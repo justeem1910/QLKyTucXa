@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sinh viên</title>
+</head>
+<body>
+<h2>Danh sách sinh viên</h2>
+
+<!-- Hiển thị lỗi nếu có -->
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
+
+<a th:href="@{/sinhvien/add}">+ Thêm sinh viên</a>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Mã SV</th>
+        <th>Tên</th>
+        <th>Giới tính</th>
+        <th>Ngày sinh</th>
+        <th>Điện thoại</th>
+        <th>Email</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="sv : ${listSV}">
+        <td th:text="${sv.id}"></td>
+        <td th:text="${sv.maSv}"></td>
+        <td th:text="${sv.ten}"></td>
+        <td th:text="${sv.gioiTinh}"></td>
+        <td th:text="${sv.ngaySinh}"></td>
+        <td th:text="${sv.soDienThoai}"></td>
+        <td th:text="${sv.email}"></td>
+        <td>
+            <a th:href="@{/sinhvien/edit/{id}(id=${sv.id})}">Sửa</a> |
+            <a th:href="@{/sinhvien/delete/{id}(id=${sv.id})}"
+               onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

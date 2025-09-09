@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Vé Tháng</title>
+</head>
+<body>
+<h2 th:text="${sinhVien.id} == null ? 'Thêm sinh viên' : 'Sửa sinh viên'"></h2>
+
+<!-- Hiển thị lỗi nếu có -->
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:action="@{/sinhvien/save}" th:object="${sinhVien}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <label>Mã SV:</label><input type="text" th:field="*{maSv}" /><br/>
+    <label>Tên:</label><input type="text" th:field="*{ten}" /><br/>
+    <label>Giới tính:</label>
+    <select th:field="*{gioiTinh}">
+        <option value="Nam">Nam</option>
+        <option value="Nu">Nữ</option>
+    </select><br/>
+    <label>Ngày sinh:</label><input type="date" th:field="*{ngaySinh}" /><br/>
+    <label>Điện thoại:</label><input type="text" th:field="*{soDienThoai}" /><br/>
+    <label>Email:</label><input type="email" th:field="*{email}" /><br/>
+    <button type="submit">Lưu</button>
+</form>
+<a th:href="@{/sinhvien}">Quay lại danh sách</a>
+</body>
+</html>
