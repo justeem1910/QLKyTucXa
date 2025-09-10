@@ -6,7 +6,6 @@ public class SuDungDichVu {
     private Integer id;
     private Integer idDv;
     private Integer idSv;
-    private String bienSoXe;
     private Timestamp ngayBatDau;
     private Timestamp ngayKetThuc;
 
@@ -32,14 +31,6 @@ public class SuDungDichVu {
 
     public void setIdSv(Integer idSv) {
         this.idSv = idSv;
-    }
-
-    public String getBienSoXe() {
-        return bienSoXe;
-    }
-
-    public void setBienSoXe(String bienSoXe) {
-        this.bienSoXe = bienSoXe;
     }
 
     public Timestamp getNgayBatDau() {
