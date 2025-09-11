@@ -15,20 +15,20 @@ public class HoaDonRepository {
         return jdbcTemplate.query("SELECT * FROM hoa_don",
                 (rs, rowNum) -> {
                     HoaDon hd = new HoaDon();
-                    hd.setId(rs.getInt("id"));
-                    hd.setIdSv(rs.getInt("id_sv"));
+                    hd.setMaHd(rs.getInt("ma_hd"));
+                    hd.setIdSv(rs.getString("ma_sv"));
                     hd.setNgayTao(rs.getDate("ngay_tao"));
                     return hd;
                 });
     }
 
-    public HoaDon findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM hoa_don WHERE id=?",
-                new Object[]{id},
+    public HoaDon findById(Integer maHd) {
+        return jdbcTemplate.queryForObject("SELECT * FROM hoa_don WHERE ma_hd=?",
+                new Object[]{maHd},
                 (rs, rowNum) -> {
                     HoaDon hd = new HoaDon();
-                    hd.setId(rs.getInt("id"));
-                    hd.setIdSv(rs.getInt("id_sv"));
+                    hd.setMaHd(rs.getInt("ma_hd"));
+                    hd.setIdSv(rs.getString("ma_sv"));
                     hd.setNgayTao(rs.getDate("ngay_tao"));
                     return hd;
                 });
@@ -36,19 +36,19 @@ public class HoaDonRepository {
 
     public int save(HoaDon hd) {
         return jdbcTemplate.update(
-                "INSERT INTO hoa_don(id_sv,ngay_tao) VALUES(?,?)",
+                "INSERT INTO hoa_don(ma_sv,ngay_tao) VALUES(?,?)",
                 hd.getIdSv(), hd.getNgayTao()
         );
     }
 
     public int update(HoaDon hd) {
         return jdbcTemplate.update(
-                "UPDATE hoa_don SET id_sv=?, ngay_tao=? WHERE id=?",
-                hd.getIdSv(), hd.getNgayTao(), hd.getId()
+                "UPDATE hoa_don SET ma_sv=?, ngay_tao=? WHERE ma_hd=?",
+                hd.getIdSv(), hd.getNgayTao(), hd.getMaHd()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM hoa_don WHERE id=?", id);
+        return jdbcTemplate.update("DELETE FROM hoa_don WHERE ma_hd=?", id);
     }
 }

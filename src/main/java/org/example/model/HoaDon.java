@@ -3,23 +3,23 @@ package org.example.model;
 import java.sql.Date;
 
 public class HoaDon {
-    private Integer id;
-    private Integer idSv;
+    private Integer maHd;
+    private String idSv;
     private Date ngayTao;
 
-    public Integer getId() {
-        return id;
+    public Integer getMaHd() {
+        return maHd;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaHd(Integer maHd) {
+        this.maHd = maHd;
     }
 
-    public Integer getIdSv() {
+    public String getIdSv() {
         return idSv;
     }
 
-    public void setIdSv(Integer idSv) {
+    public void setIdSv(String idSv) {
         this.idSv = idSv;
     }
 

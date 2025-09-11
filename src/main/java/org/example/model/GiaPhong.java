@@ -3,19 +3,19 @@ package org.example.model;
 import java.math.BigDecimal;
 
 public class GiaPhong {
-    private Integer id;
+    private Integer maGp;
     private Integer idLoai;
     private Integer ngayBatDau;
     private Integer ngayKetThuc;
     private BigDecimal giaTien;
     // getters & setters
 
-    public Integer getId() {
-        return id;
+    public Integer getMaGp() {
+        return maGp;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaGp(Integer id) {
+        this.maGp = id;
     }
 
     public Integer getIdLoai() {

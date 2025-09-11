@@ -1,16 +1,16 @@
 package org.example.model;
 
 public class ToaNha {
-    private Integer id;
+    private Integer maToa;
     private String tenToa;
     // getters & setters
 
-    public Integer getId() {
-        return id;
+    public Integer getMaToa() {
+        return maToa;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaToa(Integer maToa) {
+        this.maToa = maToa;
     }
 
     public String getTenToa() {

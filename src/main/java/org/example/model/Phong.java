@@ -1,7 +1,7 @@
 package org.example.model;
 
 public class Phong {
-    private Integer id;
+    private Integer maPhong;
     private String tenPhong;
     private Integer idToa;
     private Integer idLoai;
@@ -9,12 +9,12 @@ public class Phong {
     private Integer soNguoiDaThue;
     // getters & setters
 
-    public Integer getId() {
-        return id;
+    public Integer getMaPhongg() {
+        return maPhong;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaPhongg(Integer maPhong) {
+        this.maPhong = maPhong;
     }
 
     public String getTenPhong() {

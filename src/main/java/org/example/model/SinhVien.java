@@ -3,8 +3,7 @@ package org.example.model;
 import java.sql.Date;
 
 public class SinhVien {
-    private Integer id;
-    private String maSv;
+    private String ma_sv;
     private String ten;
     private String gioiTinh;
     private Date ngaySinh;
@@ -12,11 +11,8 @@ public class SinhVien {
     private String email;
     // getters & setters
 
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
-
-    public String getMaSv() { return maSv; }
-    public void setMaSv(String maSv) { this.maSv = maSv; }
+    public String getMaSv() { return ma_sv; }
+    public void setMaSv(String ma_sv) { this.ma_sv = ma_sv; }
 
     public String getTen() { return ten; }
     public void setTen(String ten) { this.ten = ten; }

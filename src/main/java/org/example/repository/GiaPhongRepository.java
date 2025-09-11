@@ -14,8 +14,8 @@ public class GiaPhongRepository {
         return jdbcTemplate.query("SELECT * FROM gia_phong",
                 (rs, rowNum) -> {
                     GiaPhong gp = new GiaPhong();
-                    gp.setId(rs.getInt("id"));
-                    gp.setIdLoai(rs.getInt("id_loai"));
+                    gp.setMaGp(rs.getInt("ma_gp"));
+                    gp.setIdLoai(rs.getInt("ma_lp"));
                     gp.setNgayBatDau(rs.getInt("ngay_bat_dau"));
                     gp.setNgayKetThuc(rs.getInt("ngay_ket_thuc"));
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
@@ -24,12 +24,12 @@ public class GiaPhongRepository {
     }
 
     public GiaPhong findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM gia_phong WHERE id=?",
+        return jdbcTemplate.queryForObject("SELECT * FROM gia_phong WHERE ma_gp=?",
                 new Object[]{id},
                 (rs, rowNum) -> {
                     GiaPhong gp = new GiaPhong();
-                    gp.setId(rs.getInt("id"));
-                    gp.setIdLoai(rs.getInt("id_loai"));
+                    gp.setMaGp(rs.getInt("ma_gp"));
+                    gp.setIdLoai(rs.getInt("ma_lp"));
                     gp.setNgayBatDau(rs.getInt("ngay_bat_dau"));
                     gp.setNgayKetThuc(rs.getInt("ngay_ket_thuc"));
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
@@ -39,19 +39,19 @@ public class GiaPhongRepository {
 
     public int save(GiaPhong gp) {
         return jdbcTemplate.update(
-                "INSERT INTO gia_phong(id_loai,ngay_bat_dau,ngay_ket_thuc,gia_tien) VALUES(?,?,?,?)",
+                "INSERT INTO gia_phong(ma_lp,ngay_bat_dau,ngay_ket_thuc,gia_tien) VALUES(?,?,?,?)",
                 gp.getIdLoai(), gp.getNgayBatDau(), gp.getNgayKetThuc(), gp.getGiaTien()
         );
     }
 
     public int update(GiaPhong gp) {
         return jdbcTemplate.update(
-                "UPDATE gia_phong SET id_loai=?, ngay_bat_dau=?, ngay_ket_thuc=?, gia_tien=? WHERE id=?",
-                gp.getIdLoai(), gp.getNgayBatDau(), gp.getNgayKetThuc(), gp.getGiaTien(), gp.getId()
+                "UPDATE gia_phong SET ma_lp=?, ngay_bat_dau=?, ngay_ket_thuc=?, gia_tien=? WHERE ma_gp=?",
+                gp.getIdLoai(), gp.getNgayBatDau(), gp.getNgayKetThuc(), gp.getGiaTien(), gp.getMaGp()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM gia_phong WHERE id=?", id);
+        return jdbcTemplate.update("DELETE FROM gia_phong WHERE ma_gp=?", id);
     }
 }

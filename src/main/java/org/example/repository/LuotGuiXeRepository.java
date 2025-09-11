@@ -15,22 +15,22 @@ public class LuotGuiXeRepository {
         return jdbcTemplate.query("SELECT * FROM luot_gui_xe",
                 (rs, rowNum) -> {
                     LuotGuiXe lgx = new LuotGuiXe();
-                    lgx.setId(rs.getInt("id"));
-                    lgx.setIdSv(rs.getInt("id_sv"));
+                    lgx.setMaLgx(rs.getInt("ma_lgx"));
+                    lgx.setIdSv(rs.getString("ma_sv"));
                     lgx.setBienSoXe(rs.getString("bien_so_xe"));
                     lgx.setThoiGianVao(rs.getTimestamp("thoi_gian_vao"));
-                    lgx.setThoiGianRa(rs.getTimestamp("ngay_ket_thuc"));
+                    lgx.setThoiGianRa(rs.getTimestamp("thoi_gian_ra"));
                     return lgx;
                 });
     }
 
     public LuotGuiXe findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM luot_gui_xe WHERE id=?",
+        return jdbcTemplate.queryForObject("SELECT * FROM luot_gui_xe WHERE ma_lgx=?",
                 new Object[]{id},
                 (rs, rowNum) -> {
                     LuotGuiXe lgx = new LuotGuiXe();
-                    lgx.setId(rs.getInt("id"));
-                    lgx.setIdSv(rs.getInt("id_sv"));
+                    lgx.setMaLgx(rs.getInt("ma_lgx"));
+                    lgx.setIdSv(rs.getString("ma_sv"));
                     lgx.setBienSoXe(rs.getString("bien_so_xe"));
                     lgx.setThoiGianVao(rs.getTimestamp("thoi_gian_vao"));
                     lgx.setThoiGianRa(rs.getTimestamp("thoi_gian_ra"));
@@ -40,19 +40,19 @@ public class LuotGuiXeRepository {
 
     public int save(LuotGuiXe lgx) {
         return jdbcTemplate.update(
-                "INSERT INTO luot_gui_xe(id_sv,bien_so_xe,thoi_gian_vao,thoi_gian_ra) VALUES(?,?,?,?)",
+                "INSERT INTO luot_gui_xe(ma_sv,bien_so_xe,thoi_gian_vao,thoi_gian_ra) VALUES(?,?,?,?)",
                 lgx.getIdSv(), lgx.getBienSoXe(), lgx.getThoiGianVao(), lgx.getThoiGianRa()
         );
     }
 
     public int update(LuotGuiXe lgx) {
         return jdbcTemplate.update(
-                "UPDATE luot_gui_xe SET id_sv=?, bien_so_xe=?, thoi_gian_vao=?, thoi_gian_ra=? WHERE id=?",
-                lgx.getIdSv(), lgx.getBienSoXe(), lgx.getThoiGianVao(), lgx.getThoiGianRa(), lgx.getId()
+                "UPDATE luot_gui_xe SET ma_sv=?, bien_so_xe=?, thoi_gian_vao=?, thoi_gian_ra=? WHERE ma_lgx=?",
+                lgx.getIdSv(), lgx.getBienSoXe(), lgx.getThoiGianVao(), lgx.getThoiGianRa(), lgx.getMaLgx()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM luot_gui_xe WHERE id=?", id);
+        return jdbcTemplate.update("DELETE FROM luot_gui_xe WHERE ma_lgx=?", id);
     }
 }

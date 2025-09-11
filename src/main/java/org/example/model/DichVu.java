@@ -3,18 +3,18 @@ package org.example.model;
 import java.math.BigDecimal;
 
 public class DichVu {
-    private Integer id;
+    private Integer maDv;
     private String tenDichVu;
     private BigDecimal giaCoDinh;
     // getters & setters
 
 
-    public Integer getId() {
-        return id;
+    public Integer getMaDv() {
+        return maDv;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaDv(Integer maDv) {
+        this.maDv = maDv;
     }
 
     public String getTenDichVu() {

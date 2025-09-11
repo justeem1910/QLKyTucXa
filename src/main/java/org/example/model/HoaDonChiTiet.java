@@ -2,17 +2,17 @@ package org.example.model;
 
 
 public class HoaDonChiTiet {
-    private Integer id;
+    private Integer maHdct;
     private Integer idHd;
     private Integer idDv;
     private Integer soLuong;
 
-    public Integer getId() {
-        return id;
+    public Integer getMaHdct() {
+        return maHdct;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaHdct(Integer maHdct) {
+        this.maHdct = maHdct;
     }
 
     public Integer getIdHd() {

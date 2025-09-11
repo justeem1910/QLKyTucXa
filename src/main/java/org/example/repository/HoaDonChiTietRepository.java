@@ -13,22 +13,22 @@ public class HoaDonChiTietRepository {
         return jdbcTemplate.query("SELECT * FROM hoa_don_chi_tiet",
                 (rs, rowNum) -> {
                     HoaDonChiTiet hdct = new HoaDonChiTiet();
-                    hdct.setId(rs.getInt("id"));
-                    hdct.setIdHd(rs.getInt("id_hd"));
-                    hdct.setIdDv(rs.getInt("id_dv"));
+                    hdct.setMaHdct(rs.getInt("ma_hdct"));
+                    hdct.setIdHd(rs.getInt("ma_hd"));
+                    hdct.setIdDv(rs.getInt("ma_dv"));
                     hdct.setSoLuong(rs.getInt("so_luong"));
                     return hdct;
                 });
     }
 
-    public HoaDonChiTiet findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM hoa_don_chi_tiet WHERE id=?",
-                new Object[]{id},
+    public HoaDonChiTiet findById(Integer maHdct) {
+        return jdbcTemplate.queryForObject("SELECT * FROM hoa_don_chi_tiet WHERE ma_hdct=?",
+                new Object[]{maHdct},
                 (rs, rowNum) -> {
                     HoaDonChiTiet hdct = new HoaDonChiTiet();
-                    hdct.setId(rs.getInt("id"));
-                    hdct.setIdHd(rs.getInt("id_hd"));
-                    hdct.setIdDv(rs.getInt("id_dv"));
+                    hdct.setMaHdct(rs.getInt("ma_hdct"));
+                    hdct.setIdHd(rs.getInt("ma_hd"));
+                    hdct.setIdDv(rs.getInt("ma_dv"));
                     hdct.setSoLuong(rs.getInt("so_luong"));
                     return hdct;
                 });
@@ -36,19 +36,19 @@ public class HoaDonChiTietRepository {
 
     public int save(HoaDonChiTiet hdct) {
         return jdbcTemplate.update(
-                "INSERT INTO hoa_don_chi_tiet(id_hd,id_dv,so_luong) VALUES(?,?,?)",
+                "INSERT INTO hoa_don_chi_tiet(ma_hd,ma_dv,so_luong) VALUES(?,?,?)",
                 hdct.getIdHd(), hdct.getIdDv(), hdct.getSoLuong()
         );
     }
 
     public int update(HoaDonChiTiet hdct) {
         return jdbcTemplate.update(
-                "UPDATE hoa_don_chi_tiet SET id_hd=?, id_dv=?, so_luong=? WHERE id=?",
-                hdct.getIdHd(), hdct.getIdDv(), hdct.getSoLuong(), hdct.getId()
+                "UPDATE hoa_don_chi_tiet SET ma_hd=?, ma_dv=?, so_luong=? WHERE ma_hdct=?",
+                hdct.getIdHd(), hdct.getIdDv(), hdct.getSoLuong(), hdct.getMaHdct()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM hoa_don_chi_tiet WHERE id=?", id);
+        return jdbcTemplate.update("DELETE FROM hoa_don_chi_tiet WHERE ma_hdct=?", id);
     }
 }

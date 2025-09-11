@@ -15,9 +15,9 @@ public class HopDongThueRepository {
         return jdbcTemplate.query("SELECT * FROM hop_dong_thue",
                 (rs, rowNum) -> {
                     HopDongThue hdt = new HopDongThue();
-                    hdt.setId(rs.getInt("id"));
-                    hdt.setIdSv(rs.getInt("id_sv"));
-                    hdt.setIdPhong(rs.getInt("id_phong"));
+                    hdt.setMaHdt(rs.getInt("ma_hdt"));
+                    hdt.setIdSv(rs.getString("ma_sv"));
+                    hdt.setIdPhong(rs.getInt("ma_phong"));
                     hdt.setNgayBatDau(rs.getDate("ngay_bat_dau"));
                     hdt.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
                     hdt.setNgayKetThuc(rs.getDate("ngay_thanh_ly"));
@@ -25,14 +25,14 @@ public class HopDongThueRepository {
                 });
     }
 
-    public HopDongThue findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM hop_dong_thue WHERE id=?",
-                new Object[]{id},
+    public HopDongThue findById(Integer maHdt) {
+        return jdbcTemplate.queryForObject("SELECT * FROM hop_dong_thue WHERE ma_hdt=?",
+                new Object[]{maHdt},
                 (rs, rowNum) -> {
                     HopDongThue hdt = new HopDongThue();
-                    hdt.setId(rs.getInt("id"));
-                    hdt.setIdSv(rs.getInt("id_sv"));
-                    hdt.setIdPhong(rs.getInt("id_phong"));
+                    hdt.setMaHdt(rs.getInt("ma_hdt"));
+                    hdt.setIdSv(rs.getString("ma_sv"));
+                    hdt.setIdPhong(rs.getInt("ma_phong"));
                     hdt.setNgayBatDau(rs.getDate("ngay_bat_dau"));
                     hdt.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
                     hdt.setNgayKetThuc(rs.getDate("ngay_thanh_ly"));
@@ -42,19 +42,19 @@ public class HopDongThueRepository {
 
     public int save(HopDongThue hdt) {
         return jdbcTemplate.update(
-                "INSERT INTO hop_dong_thue(id_sv,id_phong,ngay_bat_dau,ngay_ket_thuc,ngay_thanh_ly) VALUES(?,?,?,?,?)",
+                "INSERT INTO hop_dong_thue(ma_sv,ma_phong,ngay_bat_dau,ngay_ket_thuc,ngay_thanh_ly) VALUES(?,?,?,?,?)",
                 hdt.getIdSv(), hdt.getIdPhong(), hdt.getNgayBatDau(), hdt.getNgayKetThuc(), hdt.getNgayThanhLy()
         );
     }
 
     public int update(HopDongThue hdt) {
         return jdbcTemplate.update(
-                "UPDATE hop_dong_thue SET id_sv=?, id_phong=?, ngay_bat_dau=?, ngay_ket_thuc=?, ngay_thanh_ly=? WHERE id=?",
-                hdt.getIdSv(), hdt.getIdPhong(), hdt.getNgayBatDau(), hdt.getNgayKetThuc(), hdt.getNgayThanhLy(), hdt.getId()
+                "UPDATE hop_dong_thue SET ma_sv=?, ma_phong=?, ngay_bat_dau=?, ngay_ket_thuc=?, ngay_thanh_ly=? WHERE ma_hdt=?",
+                hdt.getIdSv(), hdt.getIdPhong(), hdt.getNgayBatDau(), hdt.getNgayKetThuc(), hdt.getNgayThanhLy(), hdt.getMaHdt()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM hop_dong_thue WHERE id=?", id);
+        return jdbcTemplate.update("DELETE FROM hop_dong_thue WHERE ma_hdt=?", id);
     }
 }

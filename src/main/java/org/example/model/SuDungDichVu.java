@@ -3,18 +3,18 @@ package org.example.model;
 import java.sql.Timestamp;
 
 public class SuDungDichVu {
-    private Integer id;
+    private Integer maSddv;
     private Integer idDv;
-    private Integer idSv;
+    private String idSv;
     private Timestamp ngayBatDau;
     private Timestamp ngayKetThuc;
 
-    public Integer getId() {
-        return id;
+    public Integer getMaSddv() {
+        return maSddv;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaSddv(Integer maSddv) {
+        this.maSddv = maSddv;
     }
 
     public Integer getIdDv() {
@@ -25,11 +25,11 @@ public class SuDungDichVu {
         this.idDv = idDv;
     }
 
-    public Integer getIdSv() {
+    public String getIdSv() {
         return idSv;
     }
 
-    public void setIdSv(Integer idSv) {
+    public void setIdSv(String idSv) {
         this.idSv = idSv;
     }
 

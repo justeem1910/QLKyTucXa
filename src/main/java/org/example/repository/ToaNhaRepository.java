@@ -13,18 +13,18 @@ public class ToaNhaRepository {
         return jdbcTemplate.query("SELECT * FROM toa_nha",
                 (rs, rowNum) -> {
                     ToaNha tn = new ToaNha();
-                    tn.setId(rs.getInt("id"));
+                    tn.setMaToa(rs.getInt("ma_toa"));
                     tn.setTenToa(rs.getString("ten_toa"));
                     return tn;
                 });
     }
 
-    public ToaNha findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM toa_nha WHERE id=?",
-                new Object[]{id},
+    public ToaNha findById(Integer maToa) {
+        return jdbcTemplate.queryForObject("SELECT * FROM toa_nha WHERE ma_toa=?",
+                new Object[]{maToa},
                 (rs, rowNum) -> {
                     ToaNha tn = new ToaNha();
-                    tn.setId(rs.getInt("id"));
+                    tn.setMaToa(rs.getInt("ma_toa"));
                     tn.setTenToa(rs.getString("ten_toa"));
                     return tn;
                 });
@@ -39,12 +39,12 @@ public class ToaNhaRepository {
 
     public int update(ToaNha tn) {
         return jdbcTemplate.update(
-                "UPDATE toa_nha SET ten_toa=? WHERE id=?",
-                tn.getTenToa(), tn.getId()
+                "UPDATE toa_nha SET ten_toa=? WHERE ma_toa=?",
+                tn.getTenToa(), tn.getMaToa()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM toa_nha WHERE id=?", id);
+        return jdbcTemplate.update("DELETE FROM toa_nha WHERE ma_toa=?", id);
     }
 }
