@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Danh sách sinh viên</title>
+    <title>Danh sách dịch vụ</title>
 </head>
 <body>
-<h2>Danh sách sinh viên</h2>
+<h2>Danh sách dịch vụ</h2>
 
 <!-- Hiển thị lỗi nếu có -->
 <div th:if="${error}" style="color:red;">
     <p th:text="${error}"></p>
 </div>
 
-<a th:href="@{/sinhvien/add}">+ Thêm sinh viên</a>
+<a th:href="@{/dichvu/add}">+ Thêm dịch vụ</a>
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>
         <th>ID</th>
@@ -24,16 +24,17 @@
         <th>Email</th>
         <th>Hành động</th>
     </tr>
-    <tr th:each="sv : ${listSV}">
-        <td th:text="${sv.ma_sv}"></td>
-        <td th:text="${sv.ten}"></td>
-        <td th:text="${sv.gioiTinh}"></td>
-        <td th:text="${sv.ngaySinh}"></td>
-        <td th:text="${sv.soDienThoai}"></td>
-        <td th:text="${sv.email}"></td>
+    <tr th:each="dv : ${listDichVu}">
+        <td th:text="${dv.id}"></td>
+        <td th:text="${dv.maSv}"></td>
+        <td th:text="${dv.ten}"></td>
+        <td th:text="${dv.gioiTinh}"></td>
+        <td th:text="${dv.ngaySinh}"></td>
+        <td th:text="${dv.soDienThoai}"></td>
+        <td th:text="${dv.email}"></td>
         <td>
-            <a th:href="@{/sinhvien/edit/{id}(id=${sv.ma_sv})}">Sửa</a> |
-            <a th:href="@{/sinhvien/delete/{id}(id=${sv.ma_sv})}"
+            <a th:href="@{/dichvu/edit/{id}(id=${dv.id})}">Sửa</a> |
+            <a th:href="@{/dichvu/delete/{id}(id=${dv.id})}"
                onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
         </td>
     </tr>

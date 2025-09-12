@@ -5,7 +5,7 @@
     <title>Form Vé Tháng</title>
 </head>
 <body>
-<h2 th:text="${sinhVien.ma_sv} == null ? 'Thêm sinh viên' : 'Sửa sinh viên'"></h2>
+<h2 th:text="${sinhVien.id} == null ? 'Thêm sinh viên' : 'Sửa sinh viên'"></h2>
 
 <!-- Hiển thị lỗi nếu có -->
 <div th:if="${error}" style="color:red;">
@@ -13,7 +13,8 @@
 </div>
 
 <form th:action="@{/sinhvien/save}" th:object="${sinhVien}" method="post">
-    <input type="hidden" th:field="*{ma_sv}" />
+    <input type="hidden" th:field="*{id}" />
+    <label>Mã SV:</label><input type="text" th:field="*{maSv}" /><br/>
     <label>Tên:</label><input type="text" th:field="*{ten}" /><br/>
     <label>Giới tính:</label>
     <select th:field="*{gioiTinh}">
