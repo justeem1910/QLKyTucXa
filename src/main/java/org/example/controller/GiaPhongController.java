@@ -1,68 +1,67 @@
 package org.example.controller;
 
-import org.example.model.DangKyVeThang;
-import org.example.service.DangKyVeThangService;
+import org.example.model.GiaPhong;
+import org.example.service.GiaPhongService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/dangkyvethang")
-public class DangKyVeThangController {
+@RequestMapping("/giaphong")
+public class GiaPhongController {
+    private final GiaPhongService service;
 
-    private final DangKyVeThangService service;
-
-    public DangKyVeThangController(DangKyVeThangService service) {
+    public GiaPhongController(GiaPhongService service) {
         this.service = service;
     }
 
     // Hiển thị danh sách sinh viên
     @GetMapping
     public String list(Model model, @RequestParam(value="error", required=false) String error) {
-        model.addAttribute("listDangKyVeThang", service.getAll());
+        model.addAttribute("listGiaPhong", service.getAll());
         model.addAttribute("error", error);
-        return "dangkyvethang/list";
+        return "giaphong/list";
     }
 
     // Form thêm mới
     @GetMapping("/add")
     public String addForm(Model model) {
-        model.addAttribute("dangKyVeThang", new DangKyVeThang());
-        return "dangkyvethang/form";
+        model.addAttribute("giaPhong", new GiaPhong());
+        return "giaphong/form";
     }
 
     // Form sửa
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Integer id, Model model) {
-        DangKyVeThang vt = service.getById(id);
-        model.addAttribute("dangKyVeThang", vt);
-        return "dangkyvethang/form";
+        GiaPhong gp = service.getById(id);
+        model.addAttribute("giaPhong", gp);
+        return "giaphong/form";
     }
 
     // Xử lý lưu (thêm/sửa)
     @PostMapping("/save")
-    public String save(@ModelAttribute DangKyVeThang vt, Model model) {
+    public String save(@ModelAttribute GiaPhong gp, Model model) {
         try {
-            if (vt.getMaVT() == null) {
-                service.create(vt); // thêm mới
+            if (gp.getMaGp() == null) {
+                service.create(gp); // thêm mới
             } else {
-                service.update(vt); // cập nhật
+                service.update(gp); // cập nhật
             }
         } catch (DataAccessException ex) {
             // Nếu lỗi duplicate key
-            String errorMsg = "Vé tháng đã tồn tại";
+            String errorMsg = "Giá phòng đã tồn tại";
             model.addAttribute("error", errorMsg);
-            model.addAttribute("dangKyVeThang", vt);
-            return "dangkyvethang/form";
+            model.addAttribute("giaPhong", gp);
+            return "giaphong/form";
         }
-        return "redirect:/dangkyvethang";
+        return "redirect:/giaphong";
     }
 
     // Xóa
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
         service.delete(id);
-        return "redirect:/dangkyvethang";
+        return "redirect:/giaphong";
     }
 }
