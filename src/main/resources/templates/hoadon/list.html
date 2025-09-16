@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Hóa đơn</title>
+</head>
+<body>
+<h2>Danh sách Hóa đơn</h2>
+
+<a th:href="@{/hoadon/add}">+ Thêm hóa đơn</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Mã hóa đơn</th>
+        <th>Ngày tạo</th>
+        <th>Tổng tiền</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hd : ${listHoaDon}">
+        <td th:text="${hd.maHoaDon}"></td>
+        <td th:text="${#temporals.format(hd.ngayTao, 'yyyy-MM-dd')}"></td>
+        <td th:text="${hd.tongTien}"></td>
+        <td>
+            <a th:href="@{|/hoadon/edit/${hd.maHoaDon}|}">Sửa</a> |
+            <a th:href="@{|/hoadon/delete/${hd.maHoaDon}|}" onclick="return confirm('Xóa hóa đơn này?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p th:if="${error}" th:text="${error}" style="color:red"></p>
+
+</body>
+</html>

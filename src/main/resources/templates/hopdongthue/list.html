@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách hợp đồng thuê</title>
+</head>
+<body>
+<h2>Danh sách hợp đồng thuê</h2>
+
+<!-- Hiển thị lỗi nếu có -->
+<div th:if="${error}" style="color:red;" th:text="${error}"></div>
+
+<a th:href="@{/hopdongthue/add}">+ Thêm hợp đồng thuê</a>
+<br/><br/>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Mã hợp đồng</th>
+        <th>Phòng</th>
+        <th>Ngày bắt đầu</th>
+        <th>Ngày kết thúc</th>
+        <th>Ngày thanh lý</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hdt : ${listHopDongThue}">
+        <td th:text="${hdt.maHopDong}"></td>
+        <td th:text="${hdt.idPhong}"></td>
+        <td th:text="${hdt.ngayBatDau}"></td>
+        <td th:text="${hdt.ngayKetThuc}"></td>
+        <td th:text="${hdt.ngayThanhLy}"></td>
+        <td>
+            <a th:href="@{'/hopdongthue/edit/' + ${hdt.maHopDong}}">Sửa</a>
+            |
+            <a th:href="@{'/hopdongthue/delete/' + ${hdt.maHopDong}}"
+               onclick="return confirm('Bạn có chắc muốn xóa hợp đồng này?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -24,7 +24,7 @@ public class SinhVienRepository {
                 });
     }
 
-    public SinhVien findById(Integer maSv) {
+    public SinhVien findById(String maSv) {
         return jdbcTemplate.queryForObject("SELECT * FROM sinh_vien WHERE ma_sinh_vien=?",
                 new Object[]{maSv},
                 (rs, rowNum) -> {

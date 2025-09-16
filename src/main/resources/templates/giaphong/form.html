@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm/Sửa loại phòng</title>
+</head>
+<body>
+<h2 th:text="${loaiPhong.maLoaiPhong == null ? 'Thêm loại phòng' : 'Sửa loại phòng'}"></h2>
+
+<form th:action="@{/loaiphong/save}" th:object="${loaiPhong}" method="post">
+    <input type="hidden" th:field="*{maLoaiPhong}"/>
+    <label>Tên loại:</label>
+    <input type="text" th:field="*{tenLoai}" required/>
+    <br/>
+    <button type="submit">Lưu</button>
+</form>
+
+<a th:href="@{/loaiphong}">Quay lại</a>
+</body>
+</html>

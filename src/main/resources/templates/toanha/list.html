@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách tòa nhà</title>
+</head>
+<body>
+<h2>Danh sách tòa nhà</h2>
+
+<!-- Hiển thị lỗi nếu có -->
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
+
+<a th:href="@{/toanha/add}">+ Thêm tòa nhà</a>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Tên tòa</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="tn : ${listTN}">
+        <td th:text="${tn.maToa}"></td>
+        <td th:text="${tn.tenToa}"></td>
+        <td>
+            <a th:href="@{/toanha/edit/{id}(id=${tn.maToa})}">Sửa</a> |
+            <a th:href="@{/toanha/delete/{id}(id=${tn.maToa})}"
+               onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -3,27 +3,37 @@ package org.example.model;
 import java.sql.Date;
 
 public class HopDongThue {
-    private String idSv;
-    private Integer idPhong;
+//    private String idSv;
+    private Integer maHopDong;
+    private Phong phong;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private Date ngayThanhLy;
     // getters & setters
 
-    public String getIdSv() {
-        return idSv;
+//    public String getIdSv() {
+//        return idSv;
+//    }
+//
+//    public void setIdSv(String idSv) {
+//        this.idSv = idSv;
+//    }
+
+
+    public Integer getMaHopDong() {
+        return maHopDong;
     }
 
-    public void setIdSv(String idSv) {
-        this.idSv = idSv;
+    public void setMaHopDong(Integer maHopDong) {
+        this.maHopDong = maHopDong;
     }
 
-    public Integer getIdPhong() {
-        return idPhong;
+    public Phong getPhong() {
+        return phong;
     }
 
-    public void setIdPhong(Integer idPhong) {
-        this.idPhong = idPhong;
+    public void setPhong(Phong phong) {
+        this.phong = phong;
     }
 
     public Date getNgayBatDau() {

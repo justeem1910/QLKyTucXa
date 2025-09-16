@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách sử dụng dịch vụ</title>
+</head>
+<body>
+<h2>Danh sách sử dụng dịch vụ</h2>
+
+<a th:href="@{/sudungdichvu/add}">+ Thêm mới</a>
+
+<table border="1">
+    <tr>
+        <th>Mã dịch vụ</th>
+        <th>Mã sinh viên</th>
+        <th>Ngày sử dụng</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="sddv : ${listSuDungDichVu}">
+        <td th:text="${sddv.idDv}"></td>
+        <td th:text="${sddv.idSv}"></td>
+        <td th:text="${#temporals.format(sddv.ngaySuDung, 'yyyy-MM-dd HH:mm')}"></td>
+        <td>
+            <a th:href="@{|/sudungdichvu/edit?maDichVu=${sddv.idDv}&maSinhVien=${sddv.idSv}&ngaySuDung=${#temporals.format(sddv.ngaySuDung,'yyyy-MM-dd HH:mm')}|}">Sửa</a>
+            |
+            <a th:href="@{|/sudungdichvu/delete?maDichVu=${sddv.idDv}&maSinhVien=${sddv.idSv}&ngaySuDung=${#temporals.format(sddv.ngaySuDung,'yyyy-MM-dd HH:mm')}|}"
+               onclick="return confirm('Xóa bản ghi này?')">Xóa</a>
+        </td>
+    </tr>
+</table>
+
+<p th:if="${error}" th:text="${error}" style="color:red"></p>
+
+</body>
+</html>

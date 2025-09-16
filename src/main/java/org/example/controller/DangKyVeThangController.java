@@ -3,9 +3,14 @@ package org.example.controller;
 import org.example.model.DangKyVeThang;
 import org.example.service.DangKyVeThangService;
 import org.springframework.dao.DataAccessException;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/dangkyvethang")
@@ -17,10 +22,10 @@ public class DangKyVeThangController {
         this.service = service;
     }
 
-    // Hiển thị danh sách sinh viên
+    // Hiển thị danh sách
     @GetMapping
     public String list(Model model, @RequestParam(value="error", required=false) String error) {
-        model.addAttribute("listDangKyVeThang", service.getAll());
+        model.addAttribute("listVeThang", service.getAll());
         model.addAttribute("error", error);
         return "dangkyvethang/list";
     }
@@ -32,10 +37,13 @@ public class DangKyVeThangController {
         return "dangkyvethang/form";
     }
 
-    // Form sửa
-    @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Integer id, Model model) {
-        DangKyVeThang vt = service.getById(id);
+    // Form sửa (sử dụng khóa phức hợp)
+    @GetMapping("/edit/{maSv}/{bienSoXe}/{ngayBatDau}")
+    public String editForm(@PathVariable("maSv") String maSv,
+                           @PathVariable("bienSoXe") String bienSoXe,
+                           @PathVariable("ngayBatDau") Date ngayBatDau,
+                           Model model) {
+        DangKyVeThang vt = service.getById(maSv, bienSoXe, ngayBatDau);
         model.addAttribute("dangKyVeThang", vt);
         return "dangkyvethang/form";
     }
@@ -44,13 +52,12 @@ public class DangKyVeThangController {
     @PostMapping("/save")
     public String save(@ModelAttribute DangKyVeThang vt, Model model) {
         try {
-            if (vt.getMaVT() == null) {
+            if (!service.getById(vt.getIdSv(), vt.getBienSoXe(), vt.getNgayBatDau()).getIdSv().isEmpty()) {
                 service.create(vt); // thêm mới
             } else {
                 service.update(vt); // cập nhật
             }
         } catch (DataAccessException ex) {
-            // Nếu lỗi duplicate key
             String errorMsg = "Vé tháng đã tồn tại";
             model.addAttribute("error", errorMsg);
             model.addAttribute("dangKyVeThang", vt);
@@ -60,9 +67,11 @@ public class DangKyVeThangController {
     }
 
     // Xóa
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id) {
-        service.delete(id);
+    @GetMapping("/delete/{maSv}/{bienSoXe}/{ngayBatDau}")
+    public String delete(@PathVariable("maSv") String maSv,
+                         @PathVariable("bienSoXe") String bienSoXe,
+                         @PathVariable("ngayBatDau") Date ngayBatDau) {
+        service.delete(maSv, bienSoXe, ngayBatDau);
         return "redirect:/dangkyvethang";
     }
 }

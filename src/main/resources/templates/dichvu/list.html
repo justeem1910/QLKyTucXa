@@ -15,26 +15,19 @@
 <a th:href="@{/dichvu/add}">+ Thêm dịch vụ</a>
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>
-        <th>ID</th>
-        <th>Mã SV</th>
-        <th>Tên</th>
-        <th>Giới tính</th>
-        <th>Ngày sinh</th>
-        <th>Điện thoại</th>
-        <th>Email</th>
-        <th>Hành động</th>
+        <th>Mã dịch vụ</th>
+        <th>Tên dịch vụ</th>
+        <th>Đơn vị</th>
+        <th>Giá cố định</th>
     </tr>
     <tr th:each="dv : ${listDichVu}">
-        <td th:text="${dv.id}"></td>
-        <td th:text="${dv.maSv}"></td>
-        <td th:text="${dv.ten}"></td>
-        <td th:text="${dv.gioiTinh}"></td>
-        <td th:text="${dv.ngaySinh}"></td>
-        <td th:text="${dv.soDienThoai}"></td>
-        <td th:text="${dv.email}"></td>
+        <td th:text="${dv.maDichVu}"></td>
+        <td th:text="${dv.tenDichVu}"></td>
+        <td th:text="${dv.donVi}"></td>
+        <td th:text="${dv.giaCoDinh}"></td>
         <td>
-            <a th:href="@{/dichvu/edit/{id}(id=${dv.id})}">Sửa</a> |
-            <a th:href="@{/dichvu/delete/{id}(id=${dv.id})}"
+            <a th:href="@{/dichvu/edit/{id}(id=${dv.maDichVu})}">Sửa</a> |
+            <a th:href="@{/dichvu/delete/{id}(id=${dv.maDichVu})}"
                onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
         </td>
     </tr>

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+
 @Controller
 @RequestMapping("/sudungdichvu")
 public class SuDungDichVuController {
@@ -16,7 +18,7 @@ public class SuDungDichVuController {
         this.service = service;
     }
 
-    // Hiển thị danh sách sinh viên
+    // Hiển thị danh sách
     @GetMapping
     public String list(Model model, @RequestParam(value="error", required=false) String error) {
         model.addAttribute("listSuDungDichVu", service.getAll());
@@ -31,10 +33,14 @@ public class SuDungDichVuController {
         return "sudungdichvu/form";
     }
 
-    // Form sửa
-    @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Integer id, Model model) {
-        SuDungDichVu sddv = service.getById(id);
+    // Form sửa (composite key)
+    @GetMapping("/edit")
+    public String editForm(@RequestParam Integer maDichVu,
+                           @RequestParam String maSinhVien,
+                           @RequestParam String ngaySuDung,
+                           Model model) {
+        Timestamp ts = Timestamp.valueOf(ngaySuDung.replace("T", " ") + ":00");
+        SuDungDichVu sddv = service.getById(maDichVu, maSinhVien, ts);
         model.addAttribute("suDungDichVu", sddv);
         return "sudungdichvu/form";
     }
@@ -43,14 +49,9 @@ public class SuDungDichVuController {
     @PostMapping("/save")
     public String save(@ModelAttribute SuDungDichVu sddv, Model model) {
         try {
-            if (sddv.getMaSddv() == null) {
-                service.create(sddv); // thêm mới
-            } else {
-                service.update(sddv); // cập nhật
-            }
+            service.create(sddv); // service sẽ tự xử lý insert/update
         } catch (DataAccessException ex) {
-            // Nếu lỗi duplicate key
-            String errorMsg = "Đã xảy ra lỗi!";
+            String errorMsg = "Dữ liệu sử dụng dịch vụ đã tồn tại!";
             model.addAttribute("error", errorMsg);
             model.addAttribute("suDungDichVu", sddv);
             return "sudungdichvu/form";
@@ -58,10 +59,13 @@ public class SuDungDichVuController {
         return "redirect:/sudungdichvu";
     }
 
-    // Xóa
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id) {
-        service.delete(id);
+    // Xóa (composite key)
+    @GetMapping("/delete")
+    public String delete(@RequestParam Integer maDichVu,
+                         @RequestParam String maSinhVien,
+                         @RequestParam String ngaySuDung) {
+        Timestamp ts = Timestamp.valueOf(ngaySuDung.replace("T", " ") + ":00");
+        service.delete(maDichVu, maSinhVien, ts);
         return "redirect:/sudungdichvu";
     }
 }

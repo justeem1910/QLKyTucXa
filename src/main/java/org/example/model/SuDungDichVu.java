@@ -3,41 +3,31 @@ package org.example.model;
 import java.sql.Timestamp;
 
 public class SuDungDichVu {
-    private Integer idDv;
-    private String idSv;
-    private Timestamp ngayBatDau;
-    private Timestamp ngayKetThuc;
+    private DichVu dichVu;
+    private SinhVien sinhVien;
+    private Timestamp ngaySuDung;
 
-    public Integer getIdDv() {
-        return idDv;
+    public DichVu getDichVu() {
+        return dichVu;
     }
 
-    public void setIdDv(Integer idDv) {
-        this.idDv = idDv;
+    public void setDichVu(DichVu dichVu) {
+        this.dichVu = dichVu;
     }
 
-    public String getIdSv() {
-        return idSv;
+    public SinhVien getSinhVien() {
+        return sinhVien;
     }
 
-    public void setIdSv(String idSv) {
-        this.idSv = idSv;
+    public void setSinhVien(SinhVien sinhVien) {
+        this.sinhVien = sinhVien;
     }
 
-    public Timestamp getNgayBatDau() {
-        return ngayBatDau;
+    public Timestamp getNgaySuDung() {
+        return ngaySuDung;
     }
 
-    public void setNgayBatDau(Timestamp ngayBatDau) {
-        this.ngayBatDau = ngayBatDau;
+    public void setNgaySuDung(Timestamp ngaySuDung) {
+        this.ngaySuDung = ngaySuDung;
     }
-
-    public Timestamp getNgayKetThuc() {
-        return ngayKetThuc;
-    }
-
-    public void setNgayKetThuc(Timestamp ngayKetThuc) {
-        this.ngayKetThuc = ngayKetThuc;
-    }
-    // getters & setters
 }

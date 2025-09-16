@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Form Sinh viên</title>
+    <title>Thêm/Sửa vé tháng</title>
 </head>
 <body>
-<h2 th:text="${dangKyVeThang.id} == null ? 'Thêm vé tháng' : 'Sửa vé tháng'"></h2>
+<h2 th:text="${dangKyVeThang.idSv == null ? 'Thêm vé tháng' : 'Sửa vé tháng'}"></h2>
 
-<!-- Hiển thị lỗi nếu có -->
-<div th:if="${error}" style="color:red;">
-    <p th:text="${error}"></p>
-</div>
+<div th:if="${error}" style="color:red;" th:text="${error}"></div>
 
 <form th:action="@{/dangkyvethang/save}" th:object="${dangKyVeThang}" method="post">
-    <input type="hidden" th:field="*{id}" />
-    <label>id SV:</label><input type="text" th:field="*{idSv}" /><br/>
-    <label>Biển số xe:</label><input type="text" th:field="*{bienSoXe}" /><br/>
-    <label>Ngày bắt đầu:</label><input type="date" th:field="*{ngayBatDau}" /><br/>
-    <label>Ngày kết thúc:</label><input type="date" th:field="*{ngayKetThuc}" /><br/>
+    <label>Mã sinh viên:</label>
+    <input type="text" th:field="*{idSv}" required/>
+    <br/>
+
+    <label>Biển số xe:</label>
+    <input type="text" th:field="*{bienSoXe}" required/>
+    <br/>
+
+    <label>Ngày bắt đầu:</label>
+    <input type="date" th:field="*{ngayBatDau}" required/>
+    <br/>
+
+    <label>Ngày kết thúc:</label>
+    <input type="date" th:field="*{ngayKetThuc}" required/>
+    <br/>
+
     <button type="submit">Lưu</button>
 </form>
-<a th:href="@{/dangkyvethang}">Quay lại danh sách</a>
+
+<a th:href="@{/dangkyvethang}">Quay lại</a>
 </body>
 </html>

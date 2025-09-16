@@ -3,17 +3,18 @@ package org.example.model;
 import java.math.BigDecimal;
 
 public class GiaPhong {
-    private Integer idLoai;
+    private LoaiPhong loaiPhong;
     private Integer blockGia;
     private BigDecimal giaTien;
     // getters & setters
 
-    public Integer getIdLoai() {
-        return idLoai;
+
+    public LoaiPhong getLoaiPhong() {
+        return loaiPhong;
     }
 
-    public void setIdLoai(Integer idLoai) {
-        this.idLoai = idLoai;
+    public void setLoaiPhong(LoaiPhong loaiPhong) {
+        this.loaiPhong = loaiPhong;
     }
 
     public Integer getBlockGia() {

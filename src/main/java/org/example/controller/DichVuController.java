@@ -43,7 +43,7 @@ public class DichVuController {
     @PostMapping("/save")
     public String save(@ModelAttribute DichVu dv, Model model) {
         try {
-            if (dv.getMaDv() == null) {
+            if (dv.getMaDichVu() == null) {
                 service.create(dv); // thêm mới
             } else {
                 service.update(dv); // cập nhật

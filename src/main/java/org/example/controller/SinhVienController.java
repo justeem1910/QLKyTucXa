@@ -34,7 +34,7 @@ public class SinhVienController {
 
     // Form sửa
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Integer id, Model model) {
+    public String editForm(@PathVariable String id, Model model) {
         SinhVien sv = service.getById(id);
         model.addAttribute("sinhVien", sv);
         return "sinhvien/form";
@@ -61,7 +61,7 @@ public class SinhVienController {
 
     // Xóa
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable String id) {
         service.delete(id);
         return "redirect:/sinhvien";
     }

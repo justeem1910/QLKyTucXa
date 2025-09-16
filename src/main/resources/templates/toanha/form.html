@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm/Sửa tòa nhà</title>
+</head>
+<body>
+<h2 th:text="${#lists.isEmpty(toaNha.maToa) ? 'Thêm tòa nhà' : 'Sửa tòa nhà'}"></h2>
+
+<form th:action="@{/toanha/save}" th:object="${toaNha}" method="post">
+    <input type="hidden" th:field="*{maToa}" />
+    <label>Tên tòa:</label>
+    <input type="text" th:field="*{tenToa}" required />
+    <br><br>
+    <button type="submit">Lưu</button>
+    <a th:href="@{/toanha}">Quay lại</a>
+</form>
+</body>
+</html>

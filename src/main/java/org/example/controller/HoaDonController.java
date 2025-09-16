@@ -43,7 +43,7 @@ public class HoaDonController {
     @PostMapping("/save")
     public String save(@ModelAttribute HoaDon hd, Model model) {
         try {
-            if (hd.getMaHd() == null) {
+            if (hd.getMaHoaDon() == null) {
                 service.create(hd); // thêm mới
             } else {
                 service.update(hd); // cập nhật

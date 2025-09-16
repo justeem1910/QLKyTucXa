@@ -3,18 +3,18 @@ package org.example.model;
 import java.sql.Date;
 
 public class DangKyVeThang {
-    private String idSv;
+    private SinhVien sinhVien;
     private String bienSoXe;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     // getters & setters
 
-    public String getIdSv() {
-        return idSv;
+    public SinhVien getSinhVien() {
+        return sinhVien;
     }
 
-    public void setIdSv(String idSv) {
-        this.idSv = idSv;
+    public void setSinhVien(SinhVien sinhVien) {
+        this.sinhVien = sinhVien;
     }
 
     public String getBienSoXe() {

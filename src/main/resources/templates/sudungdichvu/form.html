@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sử dụng dịch vụ</title>
+</head>
+<body>
+<h2>Thông tin sử dụng dịch vụ</h2>
+
+<form th:action="@{/sudungdichvu/save}" th:object="${suDungDichVu}" method="post">
+
+    <label>Mã dịch vụ:</label>
+    <input type="number" th:field="*{idDv}" required/><br/>
+
+    <label>Mã sinh viên:</label>
+    <input type="text" th:field="*{idSv}" required/><br/>
+
+    <label>Ngày sử dụng:</label>
+    <input type="datetime-local"
+           th:value="${#temporals.format(suDungDichVu.ngaySuDung, 'yyyy-MM-dd\'T\'HH:mm')}"
+           name="ngaySuDung" required/><br/>
+
+    <button type="submit">Lưu</button>
+</form>
+
+<p th:if="${error}" th:text="${error}" style="color:red"></p>
+
+<a th:href="@{/sudungdichvu}">Quay lại danh sách</a>
+
+</body>
+</html>

@@ -4,17 +4,17 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class LuotGuiXe {
-    private String idSv;
+    private SinhVien sinhVien;
     private String bienSoXe;
     private Timestamp thoiGianVao;
     private Timestamp thoiGianRa;
 
-    public String getIdSv() {
-        return idSv;
+    public SinhVien getSinhVien() {
+        return sinhVien;
     }
 
-    public void setIdSv(String idSv) {
-        this.idSv = idSv;
+    public void setSinhVien(SinhVien sinhVien) {
+        this.sinhVien = sinhVien;
     }
 
     public String getBienSoXe() {

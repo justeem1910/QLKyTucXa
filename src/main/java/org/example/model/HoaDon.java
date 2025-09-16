@@ -1,17 +1,36 @@
 package org.example.model;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 public class HoaDon {
-    private String idSv;
+    private Integer maHoaDon;
+//    private String idSv;
     private Date ngayTao;
+    private BigDecimal tongTien;
 
-    public String getIdSv() {
-        return idSv;
+//    public String getIdSv() {
+//        return idSv;
+//    }
+//
+//    public void setIdSv(String idSv) {
+//        this.idSv = idSv;
+//    }
+
+    public Integer getMaHoaDon() {
+        return maHoaDon;
     }
 
-    public void setIdSv(String idSv) {
-        this.idSv = idSv;
+    public void setMaHoaDon(Integer maHoaDon) {
+        this.maHoaDon = maHoaDon;
+    }
+
+    public BigDecimal getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(BigDecimal tongTien) {
+        this.tongTien = tongTien;
     }
 
     public Date getNgayTao() {

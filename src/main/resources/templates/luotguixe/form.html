@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Lượt gửi xe</title>
+</head>
+<body>
+<h2>Form Lượt gửi xe</h2>
+
+<form th:action="@{/luotguixe/save}" th:object="${luotGuiXe}" method="post">
+    <label>Mã sinh viên:</label>
+    <input type="text" th:field="*{idSv}" required />
+    <br/>
+
+    <label>Biển số xe:</label>
+    <input type="text" th:field="*{bienSoXe}" required />
+    <br/>
+
+    <input type="hidden" th:field="*{thoiGianVao}" />
+
+    <label>Thời gian ra:</label>
+    <input type="datetime-local"
+           th:value="${#temporals.format(luotGuiXe.thoiGianRa, 'yyyy-MM-dd\'T\'HH:mm')}"
+           name="thoiGianRa"/>
+    <button type="submit">Lưu</button>
+</form>
+
+<a th:href="@{/luotguixe}">Quay lại</a>
+</body>
+</html>

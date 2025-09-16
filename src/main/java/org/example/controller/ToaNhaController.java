@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/toanha")
 public class ToaNhaController {
+
     private final ToaNhaService service;
 
     public ToaNhaController(ToaNhaService service) {
         this.service = service;
     }
 
-    // Hiển thị danh sách sinh viên
+    // Hiển thị danh sách
     @GetMapping
     public String list(Model model, @RequestParam(value="error", required=false) String error) {
-        model.addAttribute("listToaNha", service.getAll());
+        model.addAttribute("listTN", service.getAll());
         model.addAttribute("error", error);
         return "toanha/list";
     }
@@ -33,25 +34,23 @@ public class ToaNhaController {
 
     // Form sửa
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Integer id, Model model) {
+    public String editForm(@PathVariable int id, Model model) {
         ToaNha tn = service.getById(id);
         model.addAttribute("toaNha", tn);
         return "toanha/form";
     }
 
-    // Xử lý lưu (thêm/sửa)
+    // Lưu (thêm/sửa)
     @PostMapping("/save")
     public String save(@ModelAttribute ToaNha tn, Model model) {
         try {
-            if (tn.getMaToa() == null) {
-                service.create(tn); // thêm mới
+            if (tn.getMaToa() == 0) {
+                service.create(tn);
             } else {
-                service.update(tn); // cập nhật
+                service.update(tn);
             }
         } catch (DataAccessException ex) {
-            // Nếu lỗi duplicate key
-            String errorMsg = "Đã xảy ra lỗi!";
-            model.addAttribute("error", errorMsg);
+            model.addAttribute("error", "Lỗi dữ liệu, có thể trùng tên tòa nhà");
             model.addAttribute("toaNha", tn);
             return "toanha/form";
         }
@@ -60,7 +59,7 @@ public class ToaNhaController {
 
     // Xóa
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable int id) {
         service.delete(id);
         return "redirect:/toanha";
     }

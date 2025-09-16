@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách loại phòng</title>
+</head>
+<body>
+<h2>Danh sách loại phòng</h2>
+
+<a th:href="@{/loaiphong/add}">+ Thêm loại phòng</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Mã loại phòng</th>
+        <th>Tên loại phòng</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="lp : ${listLoaiPhong}">
+        <td th:text="${lp.maLp}"></td>
+        <td th:text="${lp.tenLoai}"></td>
+        <td>
+            <a th:href="@{'/loaiphong/edit/' + ${lp.maLp}}">Sửa</a>
+            |
+            <a th:href="@{'/loaiphong/delete/' + ${lp.maLp}}"
+               onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

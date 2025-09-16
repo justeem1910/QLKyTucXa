@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Danh sách vé tháng</title>
+    <title>Danh sách đăng ký vé tháng</title>
 </head>
 <body>
-<h2>Danh sách vé tháng</h2>
+<h2>Danh sách đăng ký vé tháng</h2>
 
-<!-- Hiển thị lỗi nếu có -->
-<div th:if="${error}" style="color:red;">
-    <p th:text="${error}"></p>
-</div>
+<div th:if="${error}" style="color:red;" th:text="${error}"></div>
 
 <a th:href="@{/dangkyvethang/add}">+ Thêm vé tháng</a>
+<br/><br/>
+
 <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
     <tr>
-        <th>ID</th>
         <th>Mã SV</th>
         <th>Biển số xe</th>
         <th>Ngày bắt đầu</th>
         <th>Ngày kết thúc</th>
+        <th>Hành động</th>
     </tr>
-    <tr th:each="vt : ${listDangKyVeThang}">
-        <td th:text="${vt.id}"></td>
+    </thead>
+    <tbody>
+    <tr th:each="vt : ${listVeThang}">
         <td th:text="${vt.idSv}"></td>
         <td th:text="${vt.bienSoXe}"></td>
         <td th:text="${vt.ngayBatDau}"></td>
         <td th:text="${vt.ngayKetThuc}"></td>
         <td>
-            <a th:href="@{/dangkyvethang/edit/{id}(id=${vt.id})}">Sửa</a> |
-            <a th:href="@{/dangkyvethang/delete/{id}(id=${vt.id})}"
-               onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
+            <a th:href="@{'/dangkyvethang/edit/' + ${vt.idSv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}">Sửa</a> |
+            <a th:href="@{'/dangkyvethang/delete/' + ${vt.idSv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}"
+               onclick="return confirm('Bạn có chắc muốn xóa vé tháng này?')">Xóa</a>
         </td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>

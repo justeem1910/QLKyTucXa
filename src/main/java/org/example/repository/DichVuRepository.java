@@ -14,6 +14,7 @@ public class DichVuRepository {
         return jdbcTemplate.query("SELECT * FROM dich_vu",
                 (rs, rowNum) -> {
                     DichVu dv = new DichVu();
+                    dv.setMaDichVu(rs.getInt("ma_dich_vu"));
                     dv.setTenDichVu(rs.getString("ten_dich_vu"));
                     dv.setDonVi(rs.getString("don_vi"));
                     dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
@@ -21,11 +22,12 @@ public class DichVuRepository {
                 });
     }
 
-    public DichVu findById(String tendv) {
-        return jdbcTemplate.queryForObject("SELECT * FROM dich_vu WHERE ten_dich_vu=?",
-                new Object[]{tendv},
+    public DichVu findById(Integer maDv) {
+        return jdbcTemplate.queryForObject("SELECT * FROM dich_vu WHERE ma_dich_vu=?",
+                new Object[]{maDv},
                 (rs, rowNum) -> {
                     DichVu dv = new DichVu();
+                    dv.setMaDichVu(rs.getInt("ma_dich_vu"));
                     dv.setTenDichVu(rs.getString("ten_dich_vu"));
                     dv.setDonVi(rs.getString("don_vi"));
                     dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
@@ -42,12 +44,12 @@ public class DichVuRepository {
 
     public int update(DichVu dv) {
         return jdbcTemplate.update(
-                "UPDATE dich_vu SET don_vi=?, gia_co_dinh=? WHERE ten_dich_vu=?",
-                dv.getDonVi(), dv.getGiaCoDinh(), dv.getTenDichVu()
+                "UPDATE dich_vu SET ten_dich_vu=?, don_vi=?, gia_co_dinh=? WHERE ma_dich_vu=? ",
+                dv.getTenDichVu(), dv.getDonVi(), dv.getGiaCoDinh(), dv.getMaDichVu()
         );
     }
 
-    public int delete(String tenDv) {
-        return jdbcTemplate.update("DELETE FROM dich_vu WHERE ten_dich_vu=?", tenDv);
+    public int delete(Integer maDv) {
+        return jdbcTemplate.update("DELETE FROM dich_vu WHERE ma_dich_vu=?", maDv);
     }
 }

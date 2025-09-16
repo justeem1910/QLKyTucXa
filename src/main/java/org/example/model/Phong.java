@@ -3,17 +3,15 @@ package org.example.model;
 public class Phong {
     private Integer maPhong;
     private String tenPhong;
-    private Integer idToa;
-    private Integer idLoai;
+    private ToaNha toaNha;
+    private LoaiPhong loaiPhong;
     private Integer sucChua;
-//    private Integer soNguoiDaThue;
-    // getters & setters
 
-    public Integer getMaPhongg() {
+    public Integer getMaPhong() {
         return maPhong;
     }
 
-    public void setMaPhongg(Integer maPhong) {
+    public void setMaPhong(Integer maPhong) {
         this.maPhong = maPhong;
     }
 
@@ -25,20 +23,20 @@ public class Phong {
         this.tenPhong = tenPhong;
     }
 
-    public Integer getIdToa() {
-        return idToa;
+    public ToaNha getToaNha() {
+        return toaNha;
     }
 
-    public void setIdToa(Integer idToa) {
-        this.idToa = idToa;
+    public void setToaNha(ToaNha toaNha) {
+        this.toaNha = toaNha;
     }
 
-    public Integer getIdLoai() {
-        return idLoai;
+    public LoaiPhong getLoaiPhong() {
+        return loaiPhong;
     }
 
-    public void setIdLoai(Integer idLoai) {
-        this.idLoai = idLoai;
+    public void setLoaiPhong(LoaiPhong loaiPhong) {
+        this.loaiPhong = loaiPhong;
     }
 
     public Integer getSucChua() {
@@ -49,11 +47,4 @@ public class Phong {
         this.sucChua = sucChua;
     }
 
-//    public Integer getSoNguoiDaThue() {
-//        return soNguoiDaThue;
-//    }
-//
-//    public void setSoNguoiDaThue(Integer soNguoiDaThue) {
-//        this.soNguoiDaThue = soNguoiDaThue;
-//    }
 }

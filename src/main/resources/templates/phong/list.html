@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách phòng</title>
+</head>
+<body>
+<h2>Danh sách phòng</h2>
+
+<a th:href="@{/phong/add}">+ Thêm phòng</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Mã phòng</th>
+        <th>Tên phòng</th>
+        <th>Mã tòa nhà</th>
+        <th>Loại phòng</th>
+        <th>Sức chứa</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${listPhong}">
+        <td th:text="${p.maPhong}"></td>
+        <td th:text="${p.tenPhong}"></td>
+        <td th:text="${p.idToa}"></td>
+        <td th:text="${p.loaiPhong.tenLoai}"></td>
+        <td th:text="${p.sucChua}"></td>
+        <td>
+            <a th:href="@{'/phong/edit/' + ${p.maPhong}}">Sửa</a>
+            |
+            <a th:href="@{'/phong/delete/' + ${p.maPhong}}"
+               onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

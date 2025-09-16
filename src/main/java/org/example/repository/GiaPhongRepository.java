@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.model.GiaPhong;
+import org.example.model.LoaiPhong;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -11,24 +12,47 @@ public class GiaPhongRepository {
     public GiaPhongRepository(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
 
     public List<GiaPhong> findAll() {
-        return jdbcTemplate.query("SELECT * FROM gia_phong",
+        String sql = """
+            SELECT gp.ma_loai_phong, gp.block_gia, gp.gia_tien,
+                   l.ma_loai_phong, l.ten_loai
+            FROM gia_phong gp
+            JOIN loai_phong l ON gp.ma_loai_phong = l.ma_loai_phong
+            """;
+        return jdbcTemplate.query(sql,
                 (rs, rowNum) -> {
                     GiaPhong gp = new GiaPhong();
-                    gp.setIdLoai(rs.getInt("ma_loai_phong"));
                     gp.setBlockGia(rs.getInt("block_gia"));
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
+
+                    LoaiPhong lp = new LoaiPhong();
+                    lp.setMaLp(rs.getInt("ma_loai_phong"));
+                    lp.setTenLoai(rs.getString("ten_loai"));
+
+                    gp.setLoaiPhong(lp);
                     return gp;
                 });
     }
 
-    public GiaPhong findById(String maDV, Integer blockGia) {
-        return jdbcTemplate.queryForObject("SELECT * FROM gia_phong WHERE ma_loai_phong=? AND block_gia=?",
-                new Object[]{maDV, blockGia},
+    public GiaPhong findById(Integer maLp, Integer blockGia) {
+        String sql = """
+            SELECT gp.ma_loai_phong, gp.block_gia, gp.gia_tien,
+                   l.ma_loai_phong, l.ten_loai
+            FROM gia_phong gp
+            JOIN loai_phong l ON gp.ma_loai_phong = l.ma_loai_phong
+            WHERE gp.ma_loai_phong=? AND gp.block_gia=?
+            """;
+        return jdbcTemplate.queryForObject(sql,
+                new Object[]{maLp, blockGia},
                 (rs, rowNum) -> {
                     GiaPhong gp = new GiaPhong();
-                    gp.setIdLoai(rs.getInt("ma_loai_phong"));
                     gp.setBlockGia(rs.getInt("block_gia"));
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
+
+                    LoaiPhong lp = new LoaiPhong();
+                    lp.setMaLp(rs.getInt("ma_loai_phong"));
+                    lp.setTenLoai(rs.getString("ten_loai"));
+
+                    gp.setLoaiPhong(lp);
                     return gp;
                 });
     }
@@ -36,18 +60,18 @@ public class GiaPhongRepository {
     public int save(GiaPhong gp) {
         return jdbcTemplate.update(
                 "INSERT INTO gia_phong(ma_loai_phong,block_gia,gia_tien) VALUES(?,?,?)",
-                gp.getIdLoai(), gp.getBlockGia(), gp.getGiaTien()
+                gp.getLoaiPhong().getMaLp(), gp.getBlockGia(), gp.getGiaTien()
         );
     }
 
     public int update(GiaPhong gp) {
         return jdbcTemplate.update(
                 "UPDATE gia_phong SET gia_tien=? WHERE ma_loai_phong=? AND block_gia=?",
-                gp.getGiaTien(), gp.getIdLoai(), gp.getBlockGia()
+                gp.getGiaTien(), gp.getLoaiPhong().getMaLp(), gp.getBlockGia()
                 );
     }
 
-    public int delete(String maDV, Integer blockGia) {
-        return jdbcTemplate.update("DELETE FROM gia_phong WHERE ma_loai_phong=? AND block_gia=?", maDV, blockGia);
+    public int delete(Integer maLp, Integer blockGia) {
+        return jdbcTemplate.update("DELETE FROM gia_phong WHERE ma_loai_phong=? AND block_gia=?", maLp, blockGia);
     }
 }

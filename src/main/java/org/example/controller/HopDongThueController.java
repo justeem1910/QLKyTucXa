@@ -43,7 +43,7 @@ public class HopDongThueController {
     @PostMapping("/save")
     public String save(@ModelAttribute HopDongThue hdt, Model model) {
         try {
-            if (hdt.getMaHdt() == null) {
+            if (hdt.getMaHopDong() == null) {
                 service.create(hdt); // thêm mới
             } else {
                 service.update(hdt); // cập nhật

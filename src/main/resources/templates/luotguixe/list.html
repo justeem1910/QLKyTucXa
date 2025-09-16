@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách lượt gửi xe</title>
+</head>
+<body>
+<h2>Danh sách lượt gửi xe</h2>
+
+<a th:href="@{/luotguixe/add}">+ Thêm mới</a>
+<br/><br/>
+
+<table border="1">
+    <tr>
+        <th>Mã sinh viên</th>
+        <th>Biển số xe</th>
+        <th>Thời gian vào</th>
+        <th>Thời gian ra</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="lgx : ${listLuotGuiXe}">
+        <td th:text="${lgx.idSv}"></td>
+        <td th:text="${lgx.bienSoXe}"></td>
+        <td th:text="${lgx.thoiGianVao}"></td>
+        <td th:text="${lgx.thoiGianRa}"></td>
+        <td>
+            <a th:href="@{|/luotguixe/edit?maSinhVien=${lgx.idSv}&bienSoXe=${lgx.bienSoXe}&thoiGianVao=${lgx.thoiGianVao}|}">Sửa</a>
+            |
+            <a th:href="@{|/luotguixe/delete?maSinhVien=${lgx.idSv}&bienSoXe=${lgx.bienSoXe}&thoiGianVao=${lgx.thoiGianVao}|}"
+               onclick="return confirm('Xóa lượt gửi xe này?')">Xóa</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
