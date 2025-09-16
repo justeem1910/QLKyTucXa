@@ -6,7 +6,7 @@ public class Phong {
     private Integer idToa;
     private Integer idLoai;
     private Integer sucChua;
-    private Integer soNguoiDaThue;
+//    private Integer soNguoiDaThue;
     // getters & setters
 
     public Integer getMaPhongg() {
@@ -49,11 +49,11 @@ public class Phong {
         this.sucChua = sucChua;
     }
 
-    public Integer getSoNguoiDaThue() {
-        return soNguoiDaThue;
-    }
-
-    public void setSoNguoiDaThue(Integer soNguoiDaThue) {
-        this.soNguoiDaThue = soNguoiDaThue;
-    }
+//    public Integer getSoNguoiDaThue() {
+//        return soNguoiDaThue;
+//    }
+//
+//    public void setSoNguoiDaThue(Integer soNguoiDaThue) {
+//        this.soNguoiDaThue = soNguoiDaThue;
+//    }
 }

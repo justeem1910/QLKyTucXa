@@ -3,22 +3,12 @@ package org.example.model;
 import java.sql.Date;
 
 public class HopDongThue {
-    private Integer maHdt;
     private String idSv;
     private Integer idPhong;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private Date ngayThanhLy;
     // getters & setters
-
-
-    public Integer getMaHdt() {
-        return maHdt;
-    }
-
-    public void setMaHdt(Integer maHdt) {
-        this.maHdt = maHdt;
-    }
 
     public String getIdSv() {
         return idSv;

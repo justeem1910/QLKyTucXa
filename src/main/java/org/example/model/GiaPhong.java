@@ -3,20 +3,10 @@ package org.example.model;
 import java.math.BigDecimal;
 
 public class GiaPhong {
-    private Integer maGp;
     private Integer idLoai;
-    private Integer ngayBatDau;
-    private Integer ngayKetThuc;
+    private Integer blockGia;
     private BigDecimal giaTien;
     // getters & setters
-
-    public Integer getMaGp() {
-        return maGp;
-    }
-
-    public void setMaGp(Integer id) {
-        this.maGp = id;
-    }
 
     public Integer getIdLoai() {
         return idLoai;
@@ -26,20 +16,12 @@ public class GiaPhong {
         this.idLoai = idLoai;
     }
 
-    public Integer getNgayBatDau() {
-        return ngayBatDau;
+    public Integer getBlockGia() {
+        return blockGia;
     }
 
-    public void setNgayBatDau(Integer ngayBatDau) {
-        this.ngayBatDau = ngayBatDau;
-    }
-
-    public Integer getNgayKetThuc() {
-        return ngayKetThuc;
-    }
-
-    public void setNgayKetThuc(Integer ngayKetThuc) {
-        this.ngayKetThuc = ngayKetThuc;
+    public void setBlockGia(Integer blockGia) {
+        this.blockGia = blockGia;
     }
 
     public BigDecimal getGiaTien() {

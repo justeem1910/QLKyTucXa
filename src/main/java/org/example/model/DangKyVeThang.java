@@ -3,20 +3,11 @@ package org.example.model;
 import java.sql.Date;
 
 public class DangKyVeThang {
-    private Integer maVT;
     private String idSv;
     private String bienSoXe;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     // getters & setters
-
-    public Integer getMaVT() {
-        return maVT;
-    }
-
-    public void setMaVT(Integer maVT) {
-        this.maVT = maVT;
-    }
 
     public String getIdSv() {
         return idSv;

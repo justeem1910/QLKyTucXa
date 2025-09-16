@@ -14,20 +14,20 @@ public class DichVuRepository {
         return jdbcTemplate.query("SELECT * FROM dich_vu",
                 (rs, rowNum) -> {
                     DichVu dv = new DichVu();
-                    dv.setMaDv(rs.getInt("ma_dv"));
                     dv.setTenDichVu(rs.getString("ten_dich_vu"));
+                    dv.setDonVi(rs.getString("don_vi"));
                     dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
                     return dv;
                 });
     }
 
-    public DichVu findById(Integer maDv) {
-        return jdbcTemplate.queryForObject("SELECT * FROM dich_vu WHERE ma_dv=?",
-                new Object[]{maDv},
+    public DichVu findById(String tendv) {
+        return jdbcTemplate.queryForObject("SELECT * FROM dich_vu WHERE ten_dich_vu=?",
+                new Object[]{tendv},
                 (rs, rowNum) -> {
                     DichVu dv = new DichVu();
-                    dv.setMaDv(rs.getInt("ma_dv"));
                     dv.setTenDichVu(rs.getString("ten_dich_vu"));
+                    dv.setDonVi(rs.getString("don_vi"));
                     dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
                     return dv;
                 });
@@ -35,19 +35,19 @@ public class DichVuRepository {
 
     public int save(DichVu dv) {
         return jdbcTemplate.update(
-                "INSERT INTO dich_vu(ten_dich_vu,gia_co_dinh) VALUES(?,?)",
-                dv.getTenDichVu(), dv.getGiaCoDinh()
+                "INSERT INTO dich_vu(ten_dich_vu,don_vi,gia_co_dinh) VALUES(?,?,?)",
+                dv.getTenDichVu(), dv.getDonVi(), dv.getGiaCoDinh()
         );
     }
 
     public int update(DichVu dv) {
         return jdbcTemplate.update(
-                "UPDATE dich_vu SET ten_dich_vu=?, gia_co_dinh=? WHERE ma_dv=?",
-                dv.getTenDichVu(), dv.getGiaCoDinh(), dv.getMaDv()
+                "UPDATE dich_vu SET don_vi=?, gia_co_dinh=? WHERE ten_dich_vu=?",
+                dv.getDonVi(), dv.getGiaCoDinh(), dv.getTenDichVu()
         );
     }
 
-    public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM dich_vu WHERE ma_dv=?", id);
+    public int delete(String tenDv) {
+        return jdbcTemplate.update("DELETE FROM dich_vu WHERE ten_dich_vu=?", tenDv);
     }
 }

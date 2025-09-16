@@ -3,19 +3,10 @@ package org.example.model;
 import java.math.BigDecimal;
 
 public class DichVu {
-    private Integer maDv;
     private String tenDichVu;
+    private String donVi;
     private BigDecimal giaCoDinh;
     // getters & setters
-
-
-    public Integer getMaDv() {
-        return maDv;
-    }
-
-    public void setMaDv(Integer maDv) {
-        this.maDv = maDv;
-    }
 
     public String getTenDichVu() {
         return tenDichVu;
@@ -23,6 +14,14 @@ public class DichVu {
 
     public void setTenDichVu(String tenDichVu) {
         this.tenDichVu = tenDichVu;
+    }
+
+    public String getDonVi() {
+        return donVi;
+    }
+
+    public void setDonVi(String donVi) {
+        this.donVi = donVi;
     }
 
     public BigDecimal getGiaCoDinh() {

@@ -14,24 +14,20 @@ public class GiaPhongRepository {
         return jdbcTemplate.query("SELECT * FROM gia_phong",
                 (rs, rowNum) -> {
                     GiaPhong gp = new GiaPhong();
-                    gp.setMaGp(rs.getInt("ma_gp"));
-                    gp.setIdLoai(rs.getInt("ma_lp"));
-                    gp.setNgayBatDau(rs.getInt("ngay_bat_dau"));
-                    gp.setNgayKetThuc(rs.getInt("ngay_ket_thuc"));
+                    gp.setIdLoai(rs.getInt("ma_loai_phong"));
+                    gp.setBlockGia(rs.getInt("block_gia"));
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
                     return gp;
                 });
     }
 
-    public GiaPhong findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM gia_phong WHERE ma_gp=?",
-                new Object[]{id},
+    public GiaPhong findById(String maDV, Integer blockGia) {
+        return jdbcTemplate.queryForObject("SELECT * FROM gia_phong WHERE ma_loai_phong=? AND block_gia=?",
+                new Object[]{maDV, blockGia},
                 (rs, rowNum) -> {
                     GiaPhong gp = new GiaPhong();
-                    gp.setMaGp(rs.getInt("ma_gp"));
-                    gp.setIdLoai(rs.getInt("ma_lp"));
-                    gp.setNgayBatDau(rs.getInt("ngay_bat_dau"));
-                    gp.setNgayKetThuc(rs.getInt("ngay_ket_thuc"));
+                    gp.setIdLoai(rs.getInt("ma_loai_phong"));
+                    gp.setBlockGia(rs.getInt("block_gia"));
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
                     return gp;
                 });
@@ -39,19 +35,19 @@ public class GiaPhongRepository {
 
     public int save(GiaPhong gp) {
         return jdbcTemplate.update(
-                "INSERT INTO gia_phong(ma_lp,ngay_bat_dau,ngay_ket_thuc,gia_tien) VALUES(?,?,?,?)",
-                gp.getIdLoai(), gp.getNgayBatDau(), gp.getNgayKetThuc(), gp.getGiaTien()
+                "INSERT INTO gia_phong(ma_loai_phong,block_gia,gia_tien) VALUES(?,?,?)",
+                gp.getIdLoai(), gp.getBlockGia(), gp.getGiaTien()
         );
     }
 
     public int update(GiaPhong gp) {
         return jdbcTemplate.update(
-                "UPDATE gia_phong SET ma_lp=?, ngay_bat_dau=?, ngay_ket_thuc=?, gia_tien=? WHERE ma_gp=?",
-                gp.getIdLoai(), gp.getNgayBatDau(), gp.getNgayKetThuc(), gp.getGiaTien(), gp.getMaGp()
-        );
+                "UPDATE gia_phong SET gia_tien=? WHERE ma_loai_phong=? AND block_gia=?",
+                gp.getGiaTien(), gp.getIdLoai(), gp.getBlockGia()
+                );
     }
 
-    public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM gia_phong WHERE ma_gp=?", id);
+    public int delete(String maDV, Integer blockGia) {
+        return jdbcTemplate.update("DELETE FROM gia_phong WHERE ma_loai_phong=? AND block_gia=?", maDV, blockGia);
     }
 }

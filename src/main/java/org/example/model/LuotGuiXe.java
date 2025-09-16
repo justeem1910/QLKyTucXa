@@ -4,19 +4,10 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class LuotGuiXe {
-    private Integer maLgx;
     private String idSv;
     private String bienSoXe;
     private Timestamp thoiGianVao;
     private Timestamp thoiGianRa;
-
-    public Integer getMaLgx() {
-        return maLgx;
-    }
-
-    public void setMaLgx(Integer maLgx) {
-        this.maLgx = maLgx;
-    }
 
     public String getIdSv() {
         return idSv;

@@ -14,18 +14,18 @@ public class LoaiPhongRepository {
         return jdbcTemplate.query("SELECT * FROM loai_phong",
                 (rs, rowNum) -> {
                     LoaiPhong lp = new LoaiPhong();
-                    lp.setMaLp(rs.getInt("ma_lp"));
+                    lp.setMaLp(rs.getInt("ma_loai_phong"));
                     lp.setTenLoai(rs.getString("ten_loai"));
                     return lp;
                 });
     }
 
     public LoaiPhong findById(Integer maLp) {
-        return jdbcTemplate.queryForObject("SELECT * FROM loai_phong WHERE ma_lp=?",
+        return jdbcTemplate.queryForObject("SELECT * FROM loai_phong WHERE ma_loai_phong=?",
                 new Object[]{maLp},
                 (rs, rowNum) -> {
                     LoaiPhong lp = new LoaiPhong();
-                    lp.setMaLp(rs.getInt("ma_lp"));
+                    lp.setMaLp(rs.getInt("ma_loai_phong"));
                     lp.setTenLoai(rs.getString("ten_loai"));
                     return lp;
                 });
@@ -40,12 +40,12 @@ public class LoaiPhongRepository {
 
     public int update(LoaiPhong lp) {
         return jdbcTemplate.update(
-                "UPDATE loai_phong SET ten_loai=? WHERE ma_lp=?",
+                "UPDATE loai_phong SET ten_loai=? WHERE ma_loai_phong=?",
                 lp.getTenLoai(), lp.getMaLp()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM loai_phong WHERE ma_lp=?", id);
+        return jdbcTemplate.update("DELETE FROM loai_phong WHERE ma_loai_phong=?", id);
     }
 }

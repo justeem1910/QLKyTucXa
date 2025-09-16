@@ -17,10 +17,9 @@ public class PhongRepository {
                     Phong p = new Phong();
                     p.setMaPhongg(rs.getInt("ma_phong"));
                     p.setTenPhong(rs.getString("ten_phong"));
-                    p.setIdToa(rs.getInt("ma_toa"));
-                    p.setIdLoai(rs.getInt("ma_lp"));
+                    p.setIdToa(rs.getInt("ma_toa_nha"));
+                    p.setIdLoai(rs.getInt("ma_loai_phong"));
                     p.setSucChua(rs.getInt("suc_chua"));
-                    p.setSoNguoiDaThue(rs.getInt("so_nguoi_da_thue"));
                     return p;
                 });
     }
@@ -32,29 +31,28 @@ public class PhongRepository {
                     Phong p = new Phong();
                     p.setMaPhongg(rs.getInt("ma_phong"));
                     p.setTenPhong(rs.getString("ten_phong"));
-                    p.setIdToa(rs.getInt("ma_toa"));
-                    p.setIdLoai(rs.getInt("ma_lp"));
+                    p.setIdToa(rs.getInt("ma_toa_nha"));
+                    p.setIdLoai(rs.getInt("ma_loai_phong"));
                     p.setSucChua(rs.getInt("suc_chua"));
-                    p.setSoNguoiDaThue(rs.getInt("so_nguoi_da_thue"));
                     return p;
                 });
     }
 
     public int save(Phong p) {
         return jdbcTemplate.update(
-                "INSERT INTO phong(ten_phong,ma_toa,ma_lp,suc_chua,so_nguoi_da_thue) VALUES(?,?,?,?,?)",
-                p.getTenPhong(), p.getIdToa(), p.getIdLoai(), p.getSucChua(), p.getSoNguoiDaThue()
+                "INSERT INTO phong(ten_phong,ma_toa_nha,ma_loai_phong,suc_chua,so_nguoi_da_thue) VALUES(?,?,?,?,?)",
+                p.getTenPhong(), p.getIdToa(), p.getIdLoai(), p.getSucChua()
         );
     }
 
     public int update(Phong p) {
         return jdbcTemplate.update(
-                "UPDATE phong SET ten_phong=?, ma_toa=?, ma_lp=?, suc_chua=?, so_nguoi_da_thue=? WHERE ma_phong=?",
-                p.getTenPhong(), p.getIdToa(), p.getIdLoai(), p.getSucChua(), p.getSoNguoiDaThue(), p.getMaPhongg()
+                "UPDATE phong SET ten_phong=?, ma_toa_nha=?, ma_loai_phong=?, suc_chua=?, so_nguoi_da_thue=? WHERE ma_phong=?",
+                p.getTenPhong(), p.getIdToa(), p.getIdLoai(), p.getSucChua(), p.getMaPhongg()
         );
     }
 
     public int delete(Integer id) {
-        return jdbcTemplate.update("DELETE FROM phong WHERE ma_lp=?", id);
+        return jdbcTemplate.update("DELETE FROM phong WHERE ma_phong=?", id);
     }
 }
