@@ -4,9 +4,9 @@
     <title>Thêm/Sửa phòng</title>
 </head>
 <body>
-<h2 th:text="${phong.maPhong == null ? 'Thêm phòng' : 'Sửa phòng'}"></h2>
+<h2 th:text="${Phong.maPhong == null ? 'Thêm phòng' : 'Sửa phòng'}"></h2>
 
-<form th:action="@{/phong/save}" th:object="${phong}" method="post">
+<form th:action="@{/phong/save}" th:object="${Phong}" method="post">
     <input type="hidden" th:field="*{maPhong}"/>
 
     <label>Tên phòng:</label>

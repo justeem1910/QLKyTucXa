@@ -20,13 +20,13 @@
     <tr th:each="sddv : ${listSuDungDichVu}">
         <td th:text="${sddv.dichVu.maDichVu}"></td>
         <td th:text="${sddv.dichVu.tenDichVu}"></td>
-        <td th:text="${sddv.sinhVien.ma_sv}"></td>
+        <td th:text="${sddv.sinhVien.maSv}"></td>
         <td th:text="${sddv.sinhVien.ten}"></td>
-        <td th:text="${#temporals.format(sddv.ngaySuDung, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${#dates.format(sddv.ngaySuDung, 'yyyy-MM-dd HH:mm')}"></td>
         <td>
-            <a th:href="@{|/sudungdichvu/edit?maDichVu=${sddv.idDv}&maSinhVien=${sddv.idSv}&ngaySuDung=${#temporals.format(sddv.ngaySuDung,'yyyy-MM-dd HH:mm')}|}">Sửa</a>
+            <a th:href="@{|/sudungdichvu/edit?maDichVu=${sddv.dichVu.maDichVu}&maSinhVien=${sddv.sinhVien.maSv}&ngaySuDung=${#dates.format(sddv.ngaySuDung,'yyyy-MM-dd HH:mm')}|}">Sửa</a>
             |
-            <a th:href="@{|/sudungdichvu/delete?maDichVu=${sddv.idDv}&maSinhVien=${sddv.idSv}&ngaySuDung=${#temporals.format(sddv.ngaySuDung,'yyyy-MM-dd HH:mm')}|}"
+            <a th:href="@{|/sudungdichvu/delete?maDichVu=${sddv.dichVu.maDichVu}&maSinhVien=${sddv.sinhVien.maSv}&ngaySuDung=${#dates.format(sddv.ngaySuDung,'yyyy-MM-dd HH:mm')}|}"
                onclick="return confirm('Xóa bản ghi này?')">Xóa</a>
         </td>
     </tr>

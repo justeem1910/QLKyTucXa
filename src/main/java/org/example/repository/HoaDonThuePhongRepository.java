@@ -18,7 +18,7 @@ public class HoaDonThuePhongRepository {
     public List<HoaDonThuePhong> findAll() {
         String sql = """
             SELECT hdtp.ma_sinh_vien, hdtp.ma_hop_dong, hdtp.ma_hoa_don, hdtp.tien_phong,
-                   sv.ma_sinh_vien, sv.ten_sinh_vien, sv.ngay_sinh, sv.gioi_tinh, sv.email, sv.so_dien_thoai,
+                   sv.ma_sinh_vien, sv.ten, sv.ngay_sinh, sv.gioi_tinh, sv.email, sv.so_dien_thoai,
                    hd.ma_hoa_don, hd.ngay_tao, hd.tong_tien,
                    h.ma_hop_dong, h.ngay_bat_dau, h.ngay_ket_thuc, h.ngay_thanh_ly,
                    p.ma_phong, p.ten_phong, p.suc_chua,

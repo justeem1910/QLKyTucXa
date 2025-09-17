@@ -2,9 +2,11 @@ package org.example.repository;
 
 import org.example.model.ToaNha;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class ToaNhaRepository {
     private final JdbcTemplate jdbcTemplate;
     public ToaNhaRepository(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }

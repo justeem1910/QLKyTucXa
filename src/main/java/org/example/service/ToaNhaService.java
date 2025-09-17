@@ -2,9 +2,11 @@ package org.example.service;
 
 import org.example.model.ToaNha;
 import org.example.repository.ToaNhaRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ToaNhaService {
     private final ToaNhaRepository repo;
     public ToaNhaService(ToaNhaRepository repo){ this.repo = repo; }

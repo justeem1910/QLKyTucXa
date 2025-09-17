@@ -2,9 +2,11 @@ package org.example.service;
 
 import org.example.model.SinhVienThuePhong;
 import org.example.repository.SinhVienThuePhongRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SinhVienThuePhongService {
     private final SinhVienThuePhongRepository repo;
     public SinhVienThuePhongService(SinhVienThuePhongRepository repo){ this.repo = repo; }

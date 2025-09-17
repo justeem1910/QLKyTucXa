@@ -19,15 +19,15 @@
         <th>Hành động</th>
     </tr>
     <tr th:each="lgx : ${listLuotGuiXe}">
-        <td th:text="${lgx.sinhVien.ma_sv}"></td>
+        <td th:text="${lgx.sinhVien.maSv}"></td>
         <td th:text="${lgx.sinhVien.ten}"></td>
         <td th:text="${lgx.bienSoXe}"></td>
         <td th:text="${lgx.thoiGianVao}"></td>
         <td th:text="${lgx.thoiGianRa}"></td>
         <td>
-            <a th:href="@{|/luotguixe/edit?maSinhVien=${lgx.sinhVien.ma_sv}&bienSoXe=${lgx.bienSoXe}&thoiGianVao=${lgx.thoiGianVao}|}">Sửa</a>
+            <a th:href="@{|/luotguixe/edit?maSinhVien=${lgx.sinhVien.maSv}&bienSoXe=${lgx.bienSoXe}&thoiGianVao=${lgx.thoiGianVao}|}">Sửa</a>
             |
-            <a th:href="@{|/luotguixe/delete?maSinhVien=${lgx.sinhVien.ma_sv}&bienSoXe=${lgx.bienSoXe}&thoiGianVao=${lgx.thoiGianVao}|}"
+            <a th:href="@{|/luotguixe/delete?maSinhVien=${lgx.sinhVien.maSv}&bienSoXe=${lgx.bienSoXe}&thoiGianVao=${lgx.thoiGianVao}|}"
                onclick="return confirm('Xóa lượt gửi xe này?')">Xóa</a>
         </td>
     </tr>

@@ -15,14 +15,14 @@
     <input type="number" th:field="*{dichVu.tenDichVu}" required/><br/>
 
     <label>Mã sinh viên:</label>
-    <input type="text" th:field="*{sinhVien.ma_sv}" required/><br/>
+    <input type="text" th:field="*{sinhVien.maSv}" required/><br/>
 
     <label>Tên sinh viên:</label>
     <input type="text" th:field="*{sinhVien.ten}" required/><br/>
 
     <label>Ngày sử dụng:</label>
     <input type="datetime-local"
-           th:value="${#temporals.format(suDungDichVu.ngaySuDung, 'yyyy-MM-dd\'T\'HH:mm')}"
+           th:value="${#dates.format(suDungDichVu.ngaySuDung, 'yyyy-MM-dd HH:mm')}"
            name="ngaySuDung" required/><br/>
 
     <button type="submit">Lưu</button>

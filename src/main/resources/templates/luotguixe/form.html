@@ -8,7 +8,7 @@
 
 <form th:action="@{/luotguixe/save}" th:object="${luotGuiXe}" method="post">
     <label>Mã sinh viên:</label>
-    <input type="text" th:field="*{sinhVien.ma_sv}" required />
+    <input type="text" th:field="*{sinhVien.maSv}" required />
     <br/>
 
     <label>Tên sinh viên:</label>
@@ -23,7 +23,7 @@
 
     <label>Thời gian ra:</label>
     <input type="datetime-local"
-           th:value="${#temporals.format(luotGuiXe.thoiGianRa, 'yyyy-MM-dd\'T\'HH:mm')}"
+           th:value="${#dates.format(luotGuiXe.thoiGianRa, 'yyyy-MM-dd HH:mm:ss')}"
            name="thoiGianRa"/>
     <button type="submit">Lưu</button>
 </form>

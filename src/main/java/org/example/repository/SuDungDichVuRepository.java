@@ -18,7 +18,7 @@ public class SuDungDichVuRepository {
     public List<SuDungDichVu> findAll() {
         String sql = """
             SELECT sddv.ma_dich_vu, sddv.ma_sinh_vien, sddv.ngay_su_dung,
-                   dv.ma_dich_vu, dv.ten_dich_vu, dv.don_gia, dv.gia_co_dinh,
+                   dv.ma_dich_vu, dv.ten_dich_vu, dv.don_vi, dv.gia_co_dinh,
                    sv.ma_sinh_vien, sv.ten, sv.gioi_tinh, sv.ngay_sinh, sv.email, sv.so_dien_thoai
             FROM su_dung_dich_vu sddv
             JOIN dich_vu dv ON sddv.ma_dich_vu = dv.ma_dich_vu
@@ -30,7 +30,7 @@ public class SuDungDichVuRepository {
             DichVu dv = new DichVu();
             dv.setMaDichVu(rs.getString("ma_dich_vu"));
             dv.setTenDichVu(rs.getString("ten_dich_vu"));
-            dv.setDonVi(rs.getString("don_gia"));
+            dv.setDonVi(rs.getString("don_vi"));
             dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
 
             SinhVien sv = new SinhVien();
@@ -52,7 +52,7 @@ public class SuDungDichVuRepository {
     public SuDungDichVu findById(String maDv, String maSv, Timestamp ngaySuDung) {
         String sql = """
             SELECT sddv.ma_dich_vu, sddv.ma_sinh_vien, sddv.ngay_su_dung,
-                   dv.ma_dich_vu, dv.ten_dich_vu, dv.don_gia, dv.gia_co_dinh,
+                   dv.ma_dich_vu, dv.ten_dich_vu, dv.don_vi, dv.gia_co_dinh,
                    sv.ma_sinh_vien, sv.ten, sv.gioi_tinh, sv.ngay_sinh, sv.email, sv.so_dien_thoai
             FROM su_dung_dich_vu sddv
             JOIN dich_vu dv ON sddv.ma_dich_vu = dv.ma_dich_vu
@@ -65,7 +65,7 @@ public class SuDungDichVuRepository {
             DichVu dv = new DichVu();
             dv.setMaDichVu(rs.getString("ma_dich_vu"));
             dv.setTenDichVu(rs.getString("ten_dich_vu"));
-            dv.setDonVi(rs.getString("don_gia"));
+            dv.setDonVi(rs.getString("don_vi"));
             dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
 
             SinhVien sv = new SinhVien();

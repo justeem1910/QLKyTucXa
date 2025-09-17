@@ -15,7 +15,6 @@
 <a th:href="@{/sinhvien/add}">+ Thêm sinh viên</a>
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>
-        <th>ID</th>
         <th>Mã SV</th>
         <th>Tên</th>
         <th>Giới tính</th>
@@ -25,15 +24,15 @@
         <th>Hành động</th>
     </tr>
     <tr th:each="sv : ${listSV}">
-        <td th:text="${sv.ma_sv}"></td>
+        <td th:text="${sv.maSv}"></td>
         <td th:text="${sv.ten}"></td>
         <td th:text="${sv.gioiTinh}"></td>
         <td th:text="${sv.ngaySinh}"></td>
         <td th:text="${sv.soDienThoai}"></td>
         <td th:text="${sv.email}"></td>
         <td>
-            <a th:href="@{/sinhvien/edit/{id}(id=${sv.ma_sv})}">Sửa</a> |
-            <a th:href="@{/sinhvien/delete/{id}(id=${sv.ma_sv})}"
+            <a th:href="@{/sinhvien/edit/{id}(id=${sv.maSv})}">Sửa</a> |
+            <a th:href="@{/sinhvien/delete/{id}(id=${sv.maSv})}"
                onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
         </td>
     </tr>
