@@ -14,7 +14,7 @@ public class DichVuRepository {
         return jdbcTemplate.query("SELECT * FROM dich_vu",
                 (rs, rowNum) -> {
                     DichVu dv = new DichVu();
-                    dv.setMaDichVu(rs.getInt("ma_dich_vu"));
+                    dv.setMaDichVu(rs.getString("ma_dich_vu"));
                     dv.setTenDichVu(rs.getString("ten_dich_vu"));
                     dv.setDonVi(rs.getString("don_vi"));
                     dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
@@ -22,12 +22,12 @@ public class DichVuRepository {
                 });
     }
 
-    public DichVu findById(Integer maDv) {
+    public DichVu findById(String maDv) {
         return jdbcTemplate.queryForObject("SELECT * FROM dich_vu WHERE ma_dich_vu=?",
                 new Object[]{maDv},
                 (rs, rowNum) -> {
                     DichVu dv = new DichVu();
-                    dv.setMaDichVu(rs.getInt("ma_dich_vu"));
+                    dv.setMaDichVu(rs.getString("ma_dich_vu"));
                     dv.setTenDichVu(rs.getString("ten_dich_vu"));
                     dv.setDonVi(rs.getString("don_vi"));
                     dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
@@ -49,7 +49,7 @@ public class DichVuRepository {
         );
     }
 
-    public int delete(Integer maDv) {
+    public int delete(String maDv) {
         return jdbcTemplate.update("DELETE FROM dich_vu WHERE ma_dich_vu=?", maDv);
     }
 }

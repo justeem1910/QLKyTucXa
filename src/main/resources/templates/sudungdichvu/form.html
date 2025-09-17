@@ -9,10 +9,16 @@
 <form th:action="@{/sudungdichvu/save}" th:object="${suDungDichVu}" method="post">
 
     <label>Mã dịch vụ:</label>
-    <input type="number" th:field="*{idDv}" required/><br/>
+    <input type="number" th:field="*{dichVu.maDichVu}" required/><br/>
+
+    <label>Tên dịch vụ:</label>
+    <input type="number" th:field="*{dichVu.tenDichVu}" required/><br/>
 
     <label>Mã sinh viên:</label>
-    <input type="text" th:field="*{idSv}" required/><br/>
+    <input type="text" th:field="*{sinhVien.ma_sv}" required/><br/>
+
+    <label>Tên sinh viên:</label>
+    <input type="text" th:field="*{sinhVien.ten}" required/><br/>
 
     <label>Ngày sử dụng:</label>
     <input type="datetime-local"

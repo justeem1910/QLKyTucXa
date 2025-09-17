@@ -1,15 +1,15 @@
 package org.example.model;
 
 public class ToaNha {
-    private Integer maToa;
+    private String maToa;
     private String tenToa;
     // getters & setters
 
-    public Integer getMaToa() {
+    public String getMaToa() {
         return maToa;
     }
 
-    public void setMaToa(Integer maToa) {
+    public void setMaToa(String maToa) {
         this.maToa = maToa;
     }
 

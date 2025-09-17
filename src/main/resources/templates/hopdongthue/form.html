@@ -13,7 +13,11 @@
     <input type="hidden" th:field="*{maHopDong}"/>
 
     <label>Mã phòng:</label>
-    <input type="number" th:field="*{idPhong}" required/>
+    <input type="number" th:field="*{phong.maPhonng}" required/>
+    <br/>
+
+    <label>Tên phòng:</label>
+    <input type="number" th:field="*{phong.tenPhong}" required/>
     <br/>
 
     <label>Ngày bắt đầu:</label>

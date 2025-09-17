@@ -34,7 +34,7 @@ public class ToaNhaController {
 
     // Form sửa
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable int id, Model model) {
+    public String editForm(@PathVariable String id, Model model) {
         ToaNha tn = service.getById(id);
         model.addAttribute("toaNha", tn);
         return "toanha/form";
@@ -44,7 +44,7 @@ public class ToaNhaController {
     @PostMapping("/save")
     public String save(@ModelAttribute ToaNha tn, Model model) {
         try {
-            if (tn.getMaToa() == 0) {
+            if (tn.getMaToa().isEmpty()) {
                 service.create(tn);
             } else {
                 service.update(tn);
@@ -59,7 +59,7 @@ public class ToaNhaController {
 
     // Xóa
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable String id) {
         service.delete(id);
         return "redirect:/toanha";
     }

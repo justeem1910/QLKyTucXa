@@ -33,7 +33,7 @@ public class HopDongThueController {
 
     // Form sửa
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Integer id, Model model) {
+    public String editForm(@PathVariable String id, Model model) {
         HopDongThue hdt = service.getById(id);
         model.addAttribute("hopDongThue", hdt);
         return "hopdongthue/form";
@@ -60,7 +60,7 @@ public class HopDongThueController {
 
     // Xóa
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable String id) {
         service.delete(id);
         return "redirect:/hopdongthue";
     }

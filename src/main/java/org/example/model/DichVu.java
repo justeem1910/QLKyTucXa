@@ -3,17 +3,17 @@ package org.example.model;
 import java.math.BigDecimal;
 
 public class DichVu {
-    private Integer maDichVu;
+    private String maDichVu;
     private String tenDichVu;
     private String donVi;
     private BigDecimal giaCoDinh;
     // getters & setters
 
-    public Integer getMaDichVu() {
+    public String getMaDichVu() {
         return maDichVu;
     }
 
-    public void setMaDichVu(Integer maDichVu) {
+    public void setMaDichVu(String maDichVu) {
         this.maDichVu = maDichVu;
     }
 

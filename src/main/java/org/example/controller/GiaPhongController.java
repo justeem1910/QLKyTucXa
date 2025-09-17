@@ -30,7 +30,7 @@ public class GiaPhongController {
     }
 
     @GetMapping("/edit")
-    public String editForm(@RequestParam int maLoaiPhong, @RequestParam int blockGia, Model model) {
+    public String editForm(@RequestParam String maLoaiPhong, @RequestParam int blockGia, Model model) {
         GiaPhong gp = service.getById(maLoaiPhong, blockGia);
         model.addAttribute("giaPhong", gp);
         return "giaphong/form";
@@ -38,7 +38,7 @@ public class GiaPhongController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute GiaPhong gp) {
-        if (service.getById(gp.getIdLoai(), gp.getBlockGia()).getIdLoai() != 0) {
+        if (!service.getById(gp.getLoaiPhong().getMaLp(), gp.getBlockGia()).getLoaiPhong().getMaLp().isEmpty()) {
             service.update(gp);
         } else {
             service.create(gp);
@@ -47,7 +47,7 @@ public class GiaPhongController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam int maLoaiPhong, @RequestParam int blockGia) {
+    public String delete(@RequestParam String maLoaiPhong, @RequestParam int blockGia) {
         service.delete(maLoaiPhong, blockGia);
         return "redirect:/giaphong";
     }

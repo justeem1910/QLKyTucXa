@@ -10,7 +10,8 @@
 <table border="1">
     <thead>
     <tr>
-        <th>Loại phòng</th>
+        <th>Mã loại phòng</th>
+        <th>Tên loại phòng</th>
         <th>Block giá</th>
         <th>Giá tiền</th>
         <th>Hành động</th>
@@ -18,13 +19,14 @@
     </thead>
     <tbody>
     <tr th:each="gp : ${listGiaPhong}">
+        <td th:text="${gp.loaiPhong.maLp}"></td>
         <td th:text="${gp.loaiPhong.tenLoai}"></td>
         <td th:text="${gp.blockGia}"></td>
         <td th:text="${gp.giaTien}"></td>
         <td>
-            <a th:href="@{'/giaphong/edit/' + ${gp.idLoai} + '/' + ${gp.blockGia}}">Sửa</a>
+            <a th:href="@{'/giaphong/edit/' + ${gp.loaiPhong.maLp} + '/' + ${gp.blockGia}}">Sửa</a>
             |
-            <a th:href="@{'/giaphong/delete/' + ${gp.idLoai} + '/' + ${gp.blockGia}}"
+            <a th:href="@{'/giaphong/delete/' + ${gp.loaiPhong.maLp} + '/' + ${gp.blockGia}}"
                onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a>
         </td>
     </tr>

@@ -13,7 +13,9 @@
         <th>Mã phòng</th>
         <th>Tên phòng</th>
         <th>Mã tòa nhà</th>
-        <th>Loại phòng</th>
+        <th>Tên tòa nhà</th>
+        <th>Mã loại phòng</th>
+        <th>Tên loại phòng</th>
         <th>Sức chứa</th>
         <th>Hành động</th>
     </tr>
@@ -22,7 +24,9 @@
     <tr th:each="p : ${listPhong}">
         <td th:text="${p.maPhong}"></td>
         <td th:text="${p.tenPhong}"></td>
-        <td th:text="${p.idToa}"></td>
+        <td th:text="${p.toaNha.maToa}"></td>
+        <td th:text="${p.toaNha.tenToa}"></td>
+        <td th:text="${p.loaiPhong.maLp}"></td>
         <td th:text="${p.loaiPhong.tenLoai}"></td>
         <td th:text="${p.sucChua}"></td>
         <td>

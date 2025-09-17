@@ -13,18 +13,18 @@ public class ToaNhaRepository {
         return jdbcTemplate.query("SELECT * FROM toa_nha",
                 (rs, rowNum) -> {
                     ToaNha tn = new ToaNha();
-                    tn.setMaToa(rs.getInt("ma_toa_nha"));
+                    tn.setMaToa(rs.getString("ma_toa_nha"));
                     tn.setTenToa(rs.getString("ten_toa"));
                     return tn;
                 });
     }
 
-    public ToaNha findById(Integer maToa) {
+    public ToaNha findById(String maToa) {
         return jdbcTemplate.queryForObject("SELECT * FROM toa_nha WHERE ma_toa_nha=?",
                 new Object[]{maToa},
                 (rs, rowNum) -> {
                     ToaNha tn = new ToaNha();
-                    tn.setMaToa(rs.getInt("ma_toa_nha"));
+                    tn.setMaToa(rs.getString("ma_toa_nha"));
                     tn.setTenToa(rs.getString("ten_toa"));
                     return tn;
                 });
@@ -44,7 +44,7 @@ public class ToaNhaRepository {
         );
     }
 
-    public int delete(Integer id) {
+    public int delete(String id) {
         return jdbcTemplate.update("DELETE FROM toa_nha WHERE ma_toa_nha=?", id);
     }
 }

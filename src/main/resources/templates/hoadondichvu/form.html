@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Hóa đơn Dịch vụ</title>
+</head>
+<body>
+<h2>Form Hóa đơn Dịch vụ</h2>
+
+<form th:action="${hddv.hoaDon != null} ? @{/hoadondichvu/update} : @{/hoadondichvu/save}"
+      th:object="${hddv}" method="post">
+
+    <label>Mã Hóa đơn:</label>
+    <input type="text" th:field="*{hoaDon.maHoaDon}" required><br>
+
+    <label>Mã Sinh viên:</label>
+    <input type="text" th:field="*{sinhVien.ma_sv}" required><br>
+
+    <label>Tên Sinh viên:</label>
+    <input type="text" th:field="*{sinhVien.ten}" readonly><br>
+
+    <label>Mã Dịch vụ:</label>
+    <input type="text" th:field="*{dichVu.maDichVu}" required><br>
+
+    <label>Tên Dịch vụ:</label>
+    <input type="text" th:field="*{dichVu.tenDichVu}" readonly><br>
+
+    <label>Số lượng:</label>
+    <input type="number" th:field="*{soLuong}" min="1"><br>
+
+    <label>Phí phát sinh:</label>
+    <input type="number" step="0.01" th:field="*{phiPhatSinh}"><br><br>
+
+    <button type="submit">Lưu</button>
+    <a th:href="@{/hoadondichvu}">Quay lại</a>
+</form>
+
+</body>
+</html>

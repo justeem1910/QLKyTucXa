@@ -33,7 +33,7 @@ public class DichVuController {
 
     // Form sửa
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Integer id, Model model) {
+    public String editForm(@PathVariable String id, Model model) {
         DichVu dv = service.getById(id);
         model.addAttribute("dichVu", dv);
         return "dichvu/form";
@@ -60,7 +60,7 @@ public class DichVuController {
 
     // Xóa
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable String id) {
         service.delete(id);
         return "redirect:/dichvu";
     }

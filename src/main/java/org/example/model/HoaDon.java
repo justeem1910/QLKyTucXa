@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class HoaDon {
-    private Integer maHoaDon;
+    private String maHoaDon;
 //    private String idSv;
     private Date ngayTao;
     private BigDecimal tongTien;
@@ -17,11 +17,11 @@ public class HoaDon {
 //        this.idSv = idSv;
 //    }
 
-    public Integer getMaHoaDon() {
+    public String getMaHoaDon() {
         return maHoaDon;
     }
 
-    public void setMaHoaDon(Integer maHoaDon) {
+    public void setMaHoaDon(String maHoaDon) {
         this.maHoaDon = maHoaDon;
     }
 

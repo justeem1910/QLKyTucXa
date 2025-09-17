@@ -29,17 +29,17 @@ public class PhongRepository {
 
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Phong p = new Phong();
-            p.setMaPhong(rs.getInt("ma_phong"));
+            p.setMaPhong(rs.getString("ma_phong"));
             p.setTenPhong(rs.getString("ten_phong"));
             p.setSucChua(rs.getInt("suc_chua"));
 
             ToaNha t = new ToaNha();
-            t.setMaToa(rs.getInt("ma_toa_nha"));
+            t.setMaToa(rs.getString("ma_toa_nha"));
             t.setTenToa(rs.getString("ten_toa"));
             p.setToaNha(t);
 
             LoaiPhong l = new LoaiPhong();
-            l.setMaLp(rs.getInt("ma_loai_phong"));
+            l.setMaLp(rs.getString("ma_loai_phong"));
             l.setTenLoai(rs.getString("ten_loai"));
             p.setLoaiPhong(l);
 
@@ -48,7 +48,7 @@ public class PhongRepository {
     }
 
     // Tìm theo id
-    public Phong findById(Integer id) {
+    public Phong findById(String id) {
         String sql = """
             SELECT p.ma_phong, p.ten_phong, p.suc_chua,
                    t.ma_toa_nha, t.ten_toa,
@@ -61,17 +61,17 @@ public class PhongRepository {
 
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
             Phong p = new Phong();
-            p.setMaPhong(rs.getInt("ma_phong"));
+            p.setMaPhong(rs.getString("ma_phong"));
             p.setTenPhong(rs.getString("ten_phong"));
             p.setSucChua(rs.getInt("suc_chua"));
 
             ToaNha t = new ToaNha();
-            t.setMaToa(rs.getInt("ma_toa_nha"));
+            t.setMaToa(rs.getString("ma_toa_nha"));
             t.setTenToa(rs.getString("ten_toa"));
             p.setToaNha(t);
 
             LoaiPhong l = new LoaiPhong();
-            l.setMaLp(rs.getInt("ma_loai_phong"));
+            l.setMaLp(rs.getString("ma_loai_phong"));
             l.setTenLoai(rs.getString("ten_loai"));
             p.setLoaiPhong(l);
 
@@ -103,7 +103,7 @@ public class PhongRepository {
     }
 
     // Xóa
-    public int delete(Integer id) {
+    public int delete(String id) {
         return jdbcTemplate.update("DELETE FROM phong WHERE ma_phong=?", id);
     }
 }

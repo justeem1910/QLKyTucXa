@@ -16,7 +16,8 @@
     <thead>
     <tr>
         <th>Mã hợp đồng</th>
-        <th>Phòng</th>
+        <th>Mã phòng</th>
+        <th>Tên phòng</th>
         <th>Ngày bắt đầu</th>
         <th>Ngày kết thúc</th>
         <th>Ngày thanh lý</th>
@@ -26,7 +27,8 @@
     <tbody>
     <tr th:each="hdt : ${listHopDongThue}">
         <td th:text="${hdt.maHopDong}"></td>
-        <td th:text="${hdt.idPhong}"></td>
+        <td th:text="${hdt.phong.maPhong}"></td>
+        <td th:text="${hdt.phong.tenPhong}"></td>
         <td th:text="${hdt.ngayBatDau}"></td>
         <td th:text="${hdt.ngayKetThuc}"></td>
         <td th:text="${hdt.ngayThanhLy}"></td>

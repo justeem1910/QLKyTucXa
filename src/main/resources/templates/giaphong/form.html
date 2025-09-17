@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Thêm/Sửa loại phòng</title>
+    <title>Thêm/Sửa giá phòng</title>
 </head>
 <body>
-<h2 th:text="${loaiPhong.maLoaiPhong == null ? 'Thêm loại phòng' : 'Sửa loại phòng'}"></h2>
+<h2 th:text="${giaPhong.loaiPhong == null or giaPhong.loaiPhong.maLp == null ?
+              'Thêm giá phòng' : 'Sửa giá phòng'}"></h2>
 
-<form th:action="@{/loaiphong/save}" th:object="${loaiPhong}" method="post">
-    <input type="hidden" th:field="*{maLoaiPhong}"/>
-    <label>Tên loại:</label>
-    <input type="text" th:field="*{tenLoai}" required/>
+<form th:action="@{/giaphong/save}" th:object="${giaPhong}" method="post">
+    <!-- Loại phòng -->
+    <label>Loại phòng:</label>
+    <input type="text" th:field="*{loaiPhong.maLp}" placeholder="Mã loại phòng" required/>
     <br/>
+
+    <!-- Block giá -->
+    <label>Block giá:</label>
+    <input type="number" th:field="*{blockGia}" required/>
+    <br/>
+
+    <!-- Giá tiền -->
+    <label>Giá tiền:</label>
+    <input type="number" step="0.01" th:field="*{giaTien}" required/>
+    <br/>
+
     <button type="submit">Lưu</button>
 </form>
 
-<a th:href="@{/loaiphong}">Quay lại</a>
+<a th:href="@{/giaphong}">Quay lại</a>
 </body>
 </html>

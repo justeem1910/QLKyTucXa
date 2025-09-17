@@ -25,7 +25,7 @@ public class GiaPhongRepository {
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
 
                     LoaiPhong lp = new LoaiPhong();
-                    lp.setMaLp(rs.getInt("ma_loai_phong"));
+                    lp.setMaLp(rs.getString("ma_loai_phong"));
                     lp.setTenLoai(rs.getString("ten_loai"));
 
                     gp.setLoaiPhong(lp);
@@ -33,7 +33,7 @@ public class GiaPhongRepository {
                 });
     }
 
-    public GiaPhong findById(Integer maLp, Integer blockGia) {
+    public GiaPhong findById(String maLp, Integer blockGia) {
         String sql = """
             SELECT gp.ma_loai_phong, gp.block_gia, gp.gia_tien,
                    l.ma_loai_phong, l.ten_loai
@@ -49,7 +49,7 @@ public class GiaPhongRepository {
                     gp.setGiaTien(rs.getBigDecimal("gia_tien"));
 
                     LoaiPhong lp = new LoaiPhong();
-                    lp.setMaLp(rs.getInt("ma_loai_phong"));
+                    lp.setMaLp(rs.getString("ma_loai_phong"));
                     lp.setTenLoai(rs.getString("ten_loai"));
 
                     gp.setLoaiPhong(lp);
@@ -71,7 +71,7 @@ public class GiaPhongRepository {
                 );
     }
 
-    public int delete(Integer maLp, Integer blockGia) {
+    public int delete(String maLp, Integer blockGia) {
         return jdbcTemplate.update("DELETE FROM gia_phong WHERE ma_loai_phong=? AND block_gia=?", maLp, blockGia);
     }
 }

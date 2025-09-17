@@ -1,17 +1,17 @@
 package org.example.model;
 
 public class Phong {
-    private Integer maPhong;
+    private String maPhong;
     private String tenPhong;
     private ToaNha toaNha;
     private LoaiPhong loaiPhong;
     private Integer sucChua;
 
-    public Integer getMaPhong() {
+    public String getMaPhong() {
         return maPhong;
     }
 
-    public void setMaPhong(Integer maPhong) {
+    public void setMaPhong(String maPhong) {
         this.maPhong = maPhong;
     }
 

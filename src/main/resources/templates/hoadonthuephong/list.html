@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Hóa đơn thuê phòng</title>
+</head>
+<body>
+<h2>Danh sách Hóa đơn thuê phòng</h2>
+<a th:href="@{/hoadonthuephong/add}">+ Thêm mới</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Mã SV</th>
+        <th>Tên SV</th>
+        <th>Mã Hợp đồng</th>
+        <th>Mã Hóa đơn</th>
+        <th>Tiền phòng</th>
+        <th>Thao tác</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${list}">
+        <td th:text="${item.sinhVien.ma_sv}"></td>
+        <td th:text="${item.sinhVien.ten}"></td>
+        <td th:text="${item.hopDongThue.maHopDong}"></td>
+        <td th:text="${item.hoaDon.maHoaDon}"></td>
+        <td th:text="${item.tienPhong}"></td>
+        <td>
+            <a th:href="@{|/hoadonthuephong/edit?maSinhVien=${item.sinhVien.maSv}&maHopDong=${item.hopDongThue.maHopDong}&maHoaDon=${item.hoaDon.maHoaDon}|}">Sửa</a> |
+            <a th:href="@{|/hoadonthuephong/delete?maSinhVien=${item.sinhVien.maSv}&maHopDong=${item.hopDongThue.maHopDong}&maHoaDon=${item.hoaDon.maHoaDon}|}"
+               onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

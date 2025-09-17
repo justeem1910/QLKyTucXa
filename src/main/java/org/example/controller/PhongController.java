@@ -33,7 +33,7 @@ public class PhongController {
 
     // Form sửa
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Integer id, Model model) {
+    public String editForm(@PathVariable String id, Model model) {
         Phong p = service.getById(id);
         model.addAttribute("Phong", p);
         return "phong/form";
@@ -43,7 +43,7 @@ public class PhongController {
     @PostMapping("/save")
     public String save(@ModelAttribute Phong p, Model model) {
         try {
-            if (p.getMaPhongg() == null) {
+            if (p.getMaPhong().isEmpty()) {
                 service.create(p); // thêm mới
             } else {
                 service.update(p); // cập nhật
@@ -60,7 +60,7 @@ public class PhongController {
 
     // Xóa
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable String id) {
         service.delete(id);
         return "redirect:/phong";
     }

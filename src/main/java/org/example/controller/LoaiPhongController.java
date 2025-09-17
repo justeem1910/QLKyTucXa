@@ -30,7 +30,7 @@ public class LoaiPhongController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable int id, Model model) {
+    public String editForm(@PathVariable String id, Model model) {
         LoaiPhong lp = service.getById(id);
         model.addAttribute("loaiPhong", lp);
         return "loaiphong/form";
@@ -38,7 +38,7 @@ public class LoaiPhongController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute LoaiPhong lp) {
-        if (lp.getMaLp() == 0) {
+        if (lp.getMaLp().isEmpty()) {
             service.create(lp);
         } else {
             service.update(lp);
@@ -47,7 +47,7 @@ public class LoaiPhongController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable String id) {
         service.delete(id);
         return "redirect:/loaiphong";
     }

@@ -35,7 +35,7 @@ public class SuDungDichVuController {
 
     // Form sửa (composite key)
     @GetMapping("/edit")
-    public String editForm(@RequestParam Integer maDichVu,
+    public String editForm(@RequestParam String maDichVu,
                            @RequestParam String maSinhVien,
                            @RequestParam String ngaySuDung,
                            Model model) {
@@ -61,7 +61,7 @@ public class SuDungDichVuController {
 
     // Xóa (composite key)
     @GetMapping("/delete")
-    public String delete(@RequestParam Integer maDichVu,
+    public String delete(@RequestParam String maDichVu,
                          @RequestParam String maSinhVien,
                          @RequestParam String ngaySuDung) {
         Timestamp ts = Timestamp.valueOf(ngaySuDung.replace("T", " ") + ":00");

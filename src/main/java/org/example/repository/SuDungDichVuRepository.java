@@ -28,7 +28,7 @@ public class SuDungDichVuRepository {
             SuDungDichVu sddv = new SuDungDichVu();
 
             DichVu dv = new DichVu();
-            dv.setMaDichVu(rs.getInt("ma_dich_vu"));
+            dv.setMaDichVu(rs.getString("ma_dich_vu"));
             dv.setTenDichVu(rs.getString("ten_dich_vu"));
             dv.setDonVi(rs.getString("don_gia"));
             dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
@@ -49,7 +49,7 @@ public class SuDungDichVuRepository {
         });
     }
 
-    public SuDungDichVu findById(Integer maDv, String maSv, Timestamp ngaySuDung) {
+    public SuDungDichVu findById(String maDv, String maSv, Timestamp ngaySuDung) {
         String sql = """
             SELECT sddv.ma_dich_vu, sddv.ma_sinh_vien, sddv.ngay_su_dung,
                    dv.ma_dich_vu, dv.ten_dich_vu, dv.don_gia, dv.gia_co_dinh,
@@ -63,7 +63,7 @@ public class SuDungDichVuRepository {
             SuDungDichVu sddv = new SuDungDichVu();
 
             DichVu dv = new DichVu();
-            dv.setMaDichVu(rs.getInt("ma_dich_vu"));
+            dv.setMaDichVu(rs.getString("ma_dich_vu"));
             dv.setTenDichVu(rs.getString("ten_dich_vu"));
             dv.setDonVi(rs.getString("don_gia"));
             dv.setGiaCoDinh(rs.getBigDecimal("gia_co_dinh"));
@@ -93,7 +93,7 @@ public class SuDungDichVuRepository {
         );
     }
 
-    public int delete(Integer maDv, String maSv, Timestamp ngaySuDung) {
+    public int delete(String maDv, String maSv, Timestamp ngaySuDung) {
         return jdbcTemplate.update(
                 "DELETE FROM su_dung_dich_vu WHERE ma_dich_vu=? AND ma_sinh_vien=? AND ngay_su_dung=?",
                 maDv, maSv, ngaySuDung

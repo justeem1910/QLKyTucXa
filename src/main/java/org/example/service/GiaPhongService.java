@@ -11,8 +11,8 @@ public class GiaPhongService {
     private final GiaPhongRepository repo;
     public GiaPhongService(GiaPhongRepository repo){ this.repo = repo; }
     public List<GiaPhong> getAll(){ return repo.findAll(); }
-    public GiaPhong getById(Integer maLp, Integer blockGia){ return repo.findById(maLp, blockGia); }
+    public GiaPhong getById(String maLp, Integer blockGia){ return repo.findById(maLp, blockGia); }
     public int create(GiaPhong gp){ return repo.save(gp); }
     public int update(GiaPhong gp){ return repo.update(gp); }
-    public int delete(Integer maLp, Integer blockGia){ return repo.delete(maLp, blockGia); }
+    public int delete(String maLp, Integer blockGia){ return repo.delete(maLp, blockGia); }
 }

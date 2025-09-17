@@ -14,18 +14,18 @@ public class LoaiPhongRepository {
         return jdbcTemplate.query("SELECT * FROM loai_phong",
                 (rs, rowNum) -> {
                     LoaiPhong lp = new LoaiPhong();
-                    lp.setMaLp(rs.getInt("ma_loai_phong"));
+                    lp.setMaLp(rs.getString("ma_loai_phong"));
                     lp.setTenLoai(rs.getString("ten_loai"));
                     return lp;
                 });
     }
 
-    public LoaiPhong findById(Integer maLp) {
+    public LoaiPhong findById(String maLp) {
         return jdbcTemplate.queryForObject("SELECT * FROM loai_phong WHERE ma_loai_phong=?",
                 new Object[]{maLp},
                 (rs, rowNum) -> {
                     LoaiPhong lp = new LoaiPhong();
-                    lp.setMaLp(rs.getInt("ma_loai_phong"));
+                    lp.setMaLp(rs.getString("ma_loai_phong"));
                     lp.setTenLoai(rs.getString("ten_loai"));
                     return lp;
                 });
@@ -45,7 +45,7 @@ public class LoaiPhongRepository {
         );
     }
 
-    public int delete(Integer id) {
+    public int delete(String id) {
         return jdbcTemplate.update("DELETE FROM loai_phong WHERE ma_loai_phong=?", id);
     }
 }

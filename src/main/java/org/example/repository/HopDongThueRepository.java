@@ -32,26 +32,26 @@ public class HopDongThueRepository {
 
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             HopDongThue hdt = new HopDongThue();
-            hdt.setMaHopDong(rs.getInt("ma_hop_dong"));
+            hdt.setMaHopDong(rs.getString("ma_hop_dong"));
             hdt.setNgayBatDau(rs.getDate("ngay_bat_dau"));
             hdt.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
             hdt.setNgayThanhLy(rs.getDate("ngay_thanh_ly"));
 
             // Tạo phòng
             Phong phong = new Phong();
-            phong.setMaPhong(rs.getInt("ma_phong"));
+            phong.setMaPhong(rs.getString("ma_phong"));
             phong.setTenPhong(rs.getString("ten_phong"));
             phong.setSucChua(rs.getInt("suc_chua"));
 
             // Tạo tòa nhà
             ToaNha toa = new ToaNha();
-            toa.setMaToa(rs.getInt("ma_toa_nha"));
+            toa.setMaToa(rs.getString("ma_toa_nha"));
             toa.setTenToa(rs.getString("ten_toa"));
             phong.setToaNha(toa);
 
             // Tạo loại phòng
             LoaiPhong loai = new LoaiPhong();
-            loai.setMaLp(rs.getInt("ma_loai_phong"));
+            loai.setMaLp(rs.getString("ma_loai_phong"));
             loai.setTenLoai(rs.getString("ten_loai"));
             phong.setLoaiPhong(loai);
 
@@ -62,7 +62,7 @@ public class HopDongThueRepository {
     }
 
     // Tìm theo id
-    public HopDongThue findById(Integer maHopDong) {
+    public HopDongThue findById(String maHopDong) {
         String sql = """
             SELECT h.ma_hop_dong, h.ngay_bat_dau, h.ngay_ket_thuc, h.ngay_thanh_ly,
                    p.ma_phong, p.ten_phong, p.suc_chua,
@@ -77,23 +77,23 @@ public class HopDongThueRepository {
 
         return jdbcTemplate.queryForObject(sql, new Object[]{maHopDong}, (rs, rowNum) -> {
             HopDongThue hdt = new HopDongThue();
-            hdt.setMaHopDong(rs.getInt("ma_hop_dong"));
+            hdt.setMaHopDong(rs.getString("ma_hop_dong"));
             hdt.setNgayBatDau(rs.getDate("ngay_bat_dau"));
             hdt.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
             hdt.setNgayThanhLy(rs.getDate("ngay_thanh_ly"));
 
             Phong phong = new Phong();
-            phong.setMaPhong(rs.getInt("ma_phong"));
+            phong.setMaPhong(rs.getString("ma_phong"));
             phong.setTenPhong(rs.getString("ten_phong"));
             phong.setSucChua(rs.getInt("suc_chua"));
 
             ToaNha toa = new ToaNha();
-            toa.setMaToa(rs.getInt("ma_toa_nha"));
+            toa.setMaToa(rs.getString("ma_toa_nha"));
             toa.setTenToa(rs.getString("ten_toa"));
             phong.setToaNha(toa);
 
             LoaiPhong loai = new LoaiPhong();
-            loai.setMaLp(rs.getInt("ma_loai_phong"));
+            loai.setMaLp(rs.getString("ma_loai_phong"));
             loai.setTenLoai(rs.getString("ten_loai"));
             phong.setLoaiPhong(loai);
 
@@ -127,7 +127,7 @@ public class HopDongThueRepository {
     }
 
     // Xóa
-    public int delete(Integer maHopDong) {
+    public int delete(String maHopDong) {
         return jdbcTemplate.update("DELETE FROM hop_dong_thue WHERE ma_hop_dong=?", maHopDong);
     }
 }

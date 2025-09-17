@@ -1,14 +1,14 @@
 package org.example.model;
 
 public class LoaiPhong {
-    private Integer maLp;
+    private String maLp;
     private String tenLoai;
 
-    public Integer getMaLp() {
+    public String getMaLp() {
         return maLp;
     }
 
-    public void setMaLp(Integer maLp) {
+    public void setMaLp(String maLp) {
         this.maLp = maLp;
     }
 

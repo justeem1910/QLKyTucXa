@@ -11,8 +11,8 @@ public class PhongService {
     private final PhongRepository repo;
     public PhongService(PhongRepository repo){ this.repo = repo; }
     public List<Phong> getAll(){ return repo.findAll(); }
-    public Phong getById(Integer id){ return repo.findById(id); }
+    public Phong getById(String id){ return repo.findById(id); }
     public int create(Phong p){ return repo.save(p); }
     public int update(Phong p){ return repo.update(p); }
-    public int delete(Integer id){ return repo.delete(id); }
+    public int delete(String id){ return repo.delete(id); }
 }

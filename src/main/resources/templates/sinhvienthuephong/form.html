@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm sinh viên thuê phòng</title>
+</head>
+<body>
+<h2>Thêm sinh viên thuê phòng</h2>
+
+<form th:action="@{/sinhvienthuephong/save}" th:object="${svtp}" method="post">
+    <label>Mã sinh viên:</label>
+    <input type="text" th:field="*{sinhVien.ma_sv}" required/>
+    <br/>
+
+    <label>Mã hợp đồng:</label>
+    <input type="text" th:field="*{hopDongThue.maHopDong}" required/>
+    <br/>
+
+    <button type="submit">Lưu</button>
+</form>
+
+<a th:href="@{/sinhvienthuephong}">Quay lại</a>
+</body>
+</html>

@@ -15,6 +15,7 @@
     <thead>
     <tr>
         <th>Mã SV</th>
+        <th>Tên sinh viên</th>
         <th>Biển số xe</th>
         <th>Ngày bắt đầu</th>
         <th>Ngày kết thúc</th>
@@ -23,13 +24,14 @@
     </thead>
     <tbody>
     <tr th:each="vt : ${listVeThang}">
-        <td th:text="${vt.idSv}"></td>
+        <td th:text="${vt.sinhVien.ma_sv}"></td>
+        <td th:text="${vt.sinhVien.ten}"></td>
         <td th:text="${vt.bienSoXe}"></td>
         <td th:text="${vt.ngayBatDau}"></td>
         <td th:text="${vt.ngayKetThuc}"></td>
         <td>
-            <a th:href="@{'/dangkyvethang/edit/' + ${vt.idSv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}">Sửa</a> |
-            <a th:href="@{'/dangkyvethang/delete/' + ${vt.idSv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}"
+            <a th:href="@{'/dangkyvethang/edit/' + ${vt.sinhVien.ma_sv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}">Sửa</a> |
+            <a th:href="@{'/dangkyvethang/delete/' + ${vt.sinhVien.ma_sv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}"
                onclick="return confirm('Bạn có chắc muốn xóa vé tháng này?')">Xóa</a>
         </td>
     </tr>

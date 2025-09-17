@@ -4,13 +4,17 @@
     <title>Thêm/Sửa vé tháng</title>
 </head>
 <body>
-<h2 th:text="${dangKyVeThang.idSv == null ? 'Thêm vé tháng' : 'Sửa vé tháng'}"></h2>
+<h2 th:text="${dangKyVeThang.sinhVien.ma_sv == null ? 'Thêm vé tháng' : 'Sửa vé tháng'}"></h2>
 
 <div th:if="${error}" style="color:red;" th:text="${error}"></div>
 
 <form th:action="@{/dangkyvethang/save}" th:object="${dangKyVeThang}" method="post">
     <label>Mã sinh viên:</label>
-    <input type="text" th:field="*{idSv}" required/>
+    <input type="text" th:field="*{sinhVien.ma_sv}" required/>
+    <br/>
+
+    <label>Tên sinh viên:</label>
+    <input type="text" th:field="*{sinhVien.ten}" required/>
     <br/>
 
     <label>Biển số xe:</label>

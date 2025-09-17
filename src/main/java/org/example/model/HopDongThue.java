@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class HopDongThue {
 //    private String idSv;
-    private Integer maHopDong;
+    private String maHopDong;
     private Phong phong;
     private Date ngayBatDau;
     private Date ngayKetThuc;
@@ -20,11 +20,11 @@ public class HopDongThue {
 //    }
 
 
-    public Integer getMaHopDong() {
+    public String getMaHopDong() {
         return maHopDong;
     }
 
-    public void setMaHopDong(Integer maHopDong) {
+    public void setMaHopDong(String maHopDong) {
         this.maHopDong = maHopDong;
     }
 

@@ -47,32 +47,32 @@ public class HoaDonThuePhongRepository {
 
             // Hóa đơn
             HoaDon hd = new HoaDon();
-            hd.setMaHoaDon(rs.getInt("ma_hoa_don"));
+            hd.setMaHoaDon(rs.getString("ma_hoa_don"));
             hd.setNgayTao(rs.getDate("ngay_tao"));
             hd.setTongTien(rs.getBigDecimal("tong_tien"));
 
             // Hợp đồng thuê
             HopDongThue hopDong = new HopDongThue();
-            hopDong.setMaHopDong(rs.getInt("ma_hop_dong"));
+            hopDong.setMaHopDong(rs.getString("ma_hop_dong"));
             hopDong.setNgayBatDau(rs.getDate("ngay_bat_dau"));
             hopDong.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
             hopDong.setNgayThanhLy(rs.getDate("ngay_thanh_ly"));
 
             // Phòng
             Phong phong = new Phong();
-            phong.setMaPhong(rs.getInt("ma_phong"));
+            phong.setMaPhong(rs.getString("ma_phong"));
             phong.setTenPhong(rs.getString("ten_phong"));
             phong.setSucChua(rs.getInt("suc_chua"));
 
             // Tòa nhà
             ToaNha toa = new ToaNha();
-            toa.setMaToa(rs.getInt("ma_toa_nha"));
+            toa.setMaToa(rs.getString("ma_toa_nha"));
             toa.setTenToa(rs.getString("ten_toa"));
             phong.setToaNha(toa);
 
             // Loại phòng
             LoaiPhong loai = new LoaiPhong();
-            loai.setMaLp(rs.getInt("ma_loai_phong"));
+            loai.setMaLp(rs.getString("ma_loai_phong"));
             loai.setTenLoai(rs.getString("ten_loai"));
             phong.setLoaiPhong(loai);
 
@@ -88,7 +88,7 @@ public class HoaDonThuePhongRepository {
     }
 
     // Tìm theo id
-    public HoaDonThuePhong findById(String maSinhVien, Integer maHopDong, Integer maHoaDon) {
+    public HoaDonThuePhong findById(String maSinhVien, String maHopDong, String maHoaDon) {
         String sql = """
             SELECT hdtp.ma_sinh_vien, hdtp.ma_hop_dong, hdtp.ma_hoa_don, hdtp.tien_phong,
                    sv.ma_sinh_vien, sv.ten, sv.ngay_sinh, sv.gioi_tinh, sv.email, sv.so_dien_thoai,
@@ -119,28 +119,28 @@ public class HoaDonThuePhongRepository {
             sv.setEmail(rs.getString("email"));
 
             HoaDon hd = new HoaDon();
-            hd.setMaHoaDon(rs.getInt("ma_hoa_don"));
+            hd.setMaHoaDon(rs.getString("ma_hoa_don"));
             hd.setNgayTao(rs.getDate("ngay_tao"));
             hd.setTongTien(rs.getBigDecimal("tong_tien"));
 
             HopDongThue hopDong = new HopDongThue();
-            hopDong.setMaHopDong(rs.getInt("ma_hop_dong"));
+            hopDong.setMaHopDong(rs.getString("ma_hop_dong"));
             hopDong.setNgayBatDau(rs.getDate("ngay_bat_dau"));
             hopDong.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
             hopDong.setNgayThanhLy(rs.getDate("ngay_thanh_ly"));
 
             Phong phong = new Phong();
-            phong.setMaPhong(rs.getInt("ma_phong"));
+            phong.setMaPhong(rs.getString("ma_phong"));
             phong.setTenPhong(rs.getString("ten_phong"));
             phong.setSucChua(rs.getInt("suc_chua"));
 
             ToaNha toa = new ToaNha();
-            toa.setMaToa(rs.getInt("ma_toa_nha"));
+            toa.setMaToa(rs.getString("ma_toa_nha"));
             toa.setTenToa(rs.getString("ten_toa"));
             phong.setToaNha(toa);
 
             LoaiPhong loai = new LoaiPhong();
-            loai.setMaLp(rs.getInt("ma_loai_phong"));
+            loai.setMaLp(rs.getString("ma_loai_phong"));
             loai.setTenLoai(rs.getString("ten_loai"));
             phong.setLoaiPhong(loai);
 
@@ -176,7 +176,7 @@ public class HoaDonThuePhongRepository {
     }
 
     // Xóa
-    public int delete(String maSinhVien, Integer maHopDong, Integer maHoaDon) {
+    public int delete(String maSinhVien, String maHopDong, String maHoaDon) {
         String sql = "DELETE FROM hoa_don_thue_phong WHERE ma_sinh_vien=? AND ma_hop_dong=? AND ma_hoa_don=?";
         return jdbcTemplate.update(sql, maSinhVien, maHopDong, maHoaDon);
     }

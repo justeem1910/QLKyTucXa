@@ -8,7 +8,11 @@
 
 <form th:action="@{/luotguixe/save}" th:object="${luotGuiXe}" method="post">
     <label>Mã sinh viên:</label>
-    <input type="text" th:field="*{idSv}" required />
+    <input type="text" th:field="*{sinhVien.ma_sv}" required />
+    <br/>
+
+    <label>Tên sinh viên:</label>
+    <input type="text" th:field="*{sinhVien.ten}" required />
     <br/>
 
     <label>Biển số xe:</label>

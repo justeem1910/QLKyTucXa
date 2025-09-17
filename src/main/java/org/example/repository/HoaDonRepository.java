@@ -15,19 +15,19 @@ public class HoaDonRepository {
         return jdbcTemplate.query("SELECT * FROM hoa_don",
                 (rs, rowNum) -> {
                     HoaDon hd = new HoaDon();
-                    hd.setMaHoaDon(rs.getInt("ma_hoa_don"));
+                    hd.setMaHoaDon(rs.getString("ma_hoa_don"));
                     hd.setNgayTao(rs.getDate("ngay_tao"));
                     hd.setTongTien(rs.getBigDecimal("tong_tien"));
                     return hd;
                 });
     }
 
-    public HoaDon findById(Integer maHd) {
+    public HoaDon findById(String maHd) {
         return jdbcTemplate.queryForObject("SELECT * FROM hoa_don WHERE ma_hoa_don=?",
                 new Object[]{maHd},
                 (rs, rowNum) -> {
                     HoaDon hd = new HoaDon();
-                    hd.setMaHoaDon(rs.getInt("ma_hoa_don"));
+                    hd.setMaHoaDon(rs.getString("ma_hoa_don"));
                     hd.setNgayTao(rs.getDate("ngay_tao"));
                     hd.setTongTien(rs.getBigDecimal("tong_tien"));
                     return hd;
@@ -48,7 +48,7 @@ public class HoaDonRepository {
         );
     }
 
-    public int delete(Integer id) {
+    public int delete(String id) {
         return jdbcTemplate.update("DELETE FROM hoa_don WHERE ma_hoa_don=?", id);
     }
 }
