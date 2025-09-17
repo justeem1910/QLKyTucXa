@@ -22,8 +22,8 @@ public class HopDongThueRepository {
         String sql = """
             SELECT h.ma_hop_dong, h.ngay_bat_dau, h.ngay_ket_thuc, h.ngay_thanh_ly,
                    p.ma_phong, p.ten_phong, p.suc_chua,
-                   t.ma_toa_nha, t.ten_toa_nha,
-                   l.ma_loai_phong, l.ten_loai_phong
+                   t.ma_toa_nha, t.ten_toa,
+                   l.ma_loai_phong, l.ten_loai
             FROM hop_dong_thue h
             JOIN phong p ON h.ma_phong = p.ma_phong
             JOIN toa_nha t ON p.ma_toa_nha = t.ma_toa_nha
@@ -46,13 +46,13 @@ public class HopDongThueRepository {
             // Tạo tòa nhà
             ToaNha toa = new ToaNha();
             toa.setMaToa(rs.getInt("ma_toa_nha"));
-            toa.setTenToa(rs.getString("ten_toa_nha"));
+            toa.setTenToa(rs.getString("ten_toa"));
             phong.setToaNha(toa);
 
             // Tạo loại phòng
             LoaiPhong loai = new LoaiPhong();
             loai.setMaLp(rs.getInt("ma_loai_phong"));
-            loai.setTenLoai(rs.getString("ten_loai_phong"));
+            loai.setTenLoai(rs.getString("ten_loai"));
             phong.setLoaiPhong(loai);
 
             hdt.setPhong(phong);
@@ -66,8 +66,8 @@ public class HopDongThueRepository {
         String sql = """
             SELECT h.ma_hop_dong, h.ngay_bat_dau, h.ngay_ket_thuc, h.ngay_thanh_ly,
                    p.ma_phong, p.ten_phong, p.suc_chua,
-                   t.ma_toa_nha, t.ten_toa_nha,
-                   l.ma_loai_phong, l.ten_loai_phong
+                   t.ma_toa_nha, t.ten_toa,
+                   l.ma_loai_phong, l.ten_loai
             FROM hop_dong_thue h
             JOIN phong p ON h.ma_phong = p.ma_phong
             JOIN toa_nha t ON p.ma_toa_nha = t.ma_toa_nha
@@ -89,12 +89,12 @@ public class HopDongThueRepository {
 
             ToaNha toa = new ToaNha();
             toa.setMaToa(rs.getInt("ma_toa_nha"));
-            toa.setTenToa(rs.getString("ten_toa_nha"));
+            toa.setTenToa(rs.getString("ten_toa"));
             phong.setToaNha(toa);
 
             LoaiPhong loai = new LoaiPhong();
             loai.setMaLp(rs.getInt("ma_loai_phong"));
-            loai.setTenLoai(rs.getString("ten_loai_phong"));
+            loai.setTenLoai(rs.getString("ten_loai"));
             phong.setLoaiPhong(loai);
 
             hdt.setPhong(phong);

@@ -35,7 +35,7 @@ public class SuDungDichVuRepository {
 
             SinhVien sv = new SinhVien();
             sv.setMaSv(rs.getString("ma_sinh_vien"));
-            sv.setTen(rs.getString("ten_sinh_vien"));
+            sv.setTen(rs.getString("ten"));
             sv.setGioiTinh(rs.getString("gioi_tinh"));
             sv.setNgaySinh(rs.getDate("ngay_sinh"));
             sv.setEmail(rs.getString("email"));
