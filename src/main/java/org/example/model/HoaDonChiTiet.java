@@ -6,7 +6,7 @@ import java.util.List;
 
 public class HoaDonChiTiet {
     private SinhVien sinhVien;
-    private String giaPhong;
+    private HoaDonThuePhong hoaDonThuePhong;
 
     private List<DichVuChiTiet> dichVuChiTiets;
 
@@ -18,12 +18,12 @@ public class HoaDonChiTiet {
         this.sinhVien = sinhVien;
     }
 
-    public String getGiaPhong() {
-        return giaPhong;
+    public HoaDonThuePhong getHoaDonThuePhong() {
+        return hoaDonThuePhong;
     }
 
-    public void setGiaPhong(String giaPhong) {
-        this.giaPhong = giaPhong;
+    public void setHoaDonThuePhong(HoaDonThuePhong hoaDonThuePhong) {
+        this.hoaDonThuePhong = hoaDonThuePhong;
     }
 
     public List<DichVuChiTiet> getDichVuChiTiets() {

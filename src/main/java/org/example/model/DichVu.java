@@ -9,6 +9,16 @@ public class DichVu {
     private BigDecimal giaCoDinh;
     // getters & setters
 
+    public DichVu(String maDichVu, String tenDichVu, String donVi, BigDecimal giaCoDinh) {
+        this.maDichVu = maDichVu;
+        this.tenDichVu = tenDichVu;
+        this.donVi = donVi;
+        this.giaCoDinh = giaCoDinh;
+    }
+
+    public DichVu() {
+    }
+
     public String getMaDichVu() {
         return maDichVu;
     }

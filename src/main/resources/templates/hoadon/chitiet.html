@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hóa đơn chi tiết</title>
+</head>
+<body>
+<h2>Hóa Đơn Chi Tiết</h2>
+
+<p>Mã HD: <span th:text="${hoaDonChiTiet.hoaDonThuePhong.hoaDon.maHd}"></span></p>
+<p>Ngày tạo: <span th:text="${hoaDonChiTiet.hoaDonThuePhong.hoaDon.ngayTao}"></span></p>
+<p>Mã sinh viên: <span th:text="${hoaDonChiTiet.sinhVien.maSv}"></span></p>
+<p>Tên SV: <span th:text="${hoaDonChiTiet.sinhVien.ten}"></span></p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Tên dịch vụ</th>
+        <th>Giá dịch vụ</th>
+        <th>Số lượng</th>
+        <th>Phí phát sinh</th>
+        <th>Tổng tiền</th>
+    </tr>
+
+    <!-- Tiền phòng -->
+    <tr>
+        <td>Tiền phòng</td>
+        <td th:text="${hoaDonChiTiet.hoaDonThuePhong.tienPhong}"></td>
+        <td></td>
+        <td></td>
+        <td th:text="${hoaDonChiTiet.hoaDonThuePhong.tienPhong}"></td>
+    </tr>
+
+    <!-- Dịch vụ -->
+    <tr th:each="ct : ${hoaDonChiTiet.dichVuChiTiets}">
+        <td th:text="${ct.dichVu.dichVu.ten}"></td>
+        <td th:text="${ct.dichVu.dichVu.gia}"></td>
+        <td th:text="${ct.dichVu.soLuong}"></td>
+        <td th:text="${ct.dichVu.phiPhatSinh}"></td>
+        <td th:text="${ct.tongTien}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

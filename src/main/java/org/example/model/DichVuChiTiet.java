@@ -3,24 +3,15 @@ package org.example.model;
 import java.math.BigDecimal;
 
 public class DichVuChiTiet {
-    private DichVu dichVu;
-    private Integer soLuong;
+    private HoaDonDichVu dichVu;
     private BigDecimal tongTien;
 
-    public DichVu getDichVu() {
+    public HoaDonDichVu getDichVu() {
         return dichVu;
     }
 
-    public void setDichVu(DichVu dichVu) {
+    public void setDichVu(HoaDonDichVu dichVu) {
         this.dichVu = dichVu;
-    }
-
-    public Integer getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(Integer soLuong) {
-        this.soLuong = soLuong;
     }
 
     public BigDecimal getTongTien() {
