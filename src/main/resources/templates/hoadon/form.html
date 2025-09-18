@@ -12,7 +12,7 @@
     <label>Ngày tạo:</label>
     <input type="date"
            th:field="*{ngayTao}"
-           th:value="${#temporals.format(hoaDon.ngayTao,'yyyy-MM-dd')}" required/>
+           th:value="${#dates.format(hoaDon.ngayTao,'yyyy-MM-dd')}" required/>
     <br/>
 
     <label>Tổng tiền:</label>

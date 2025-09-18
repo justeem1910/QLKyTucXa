@@ -20,7 +20,7 @@
     <tbody>
     <tr th:each="hd : ${listHoaDon}">
         <td th:text="${hd.maHoaDon}"></td>
-        <td th:text="${#temporals.format(hd.ngayTao, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(hd.ngayTao, 'yyyy-MM-dd')}"></td>
         <td th:text="${hd.tongTien}"></td>
         <td>
             <a th:href="@{|/hoadon/edit/${hd.maHoaDon}|}">Sửa</a> |

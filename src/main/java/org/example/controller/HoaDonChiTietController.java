@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/hoadonchitiet")
 public class HoaDonChiTietController {
@@ -19,7 +21,7 @@ public class HoaDonChiTietController {
     // Hiển thị danh sách sinh viên
     @GetMapping
     public String list(Model model, @RequestParam(value="error", required=false) String error) {
-        model.addAttribute("listHoaDonChiTiet", service.getAll());
+        model.addAttribute("listHoaDonChiTiet");
         model.addAttribute("error", error);
         return "hoadonchitiet/list";
     }
@@ -34,8 +36,7 @@ public class HoaDonChiTietController {
     // Form sửa
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Integer id, Model model) {
-        HoaDonChiTiet hdct = service.getById(id);
-        model.addAttribute("hoaDonChiTiet", hdct);
+        model.addAttribute("hoaDonChiTiet");
         return "hoadonchitiet/form";
     }
 
@@ -43,11 +44,11 @@ public class HoaDonChiTietController {
     @PostMapping("/save")
     public String save(@ModelAttribute HoaDonChiTiet hdct, Model model) {
         try {
-            if (hdct.getMaHdct() == null) {
-                service.create(hdct); // thêm mới
-            } else {
-                service.update(hdct); // cập nhật
-            }
+//            if (hdct.getMaHdct() == null) {
+//                service.create(hdct); // thêm mới
+//            } else {
+//                service.update(hdct); // cập nhật
+//            }
         } catch (DataAccessException ex) {
             // Nếu lỗi duplicate key
             String errorMsg = "Hoá đơn chi tiết đã tồn tại";
@@ -61,7 +62,7 @@ public class HoaDonChiTietController {
     // Xóa
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        service.delete(id);
+//        service.delete(id);
         return "redirect:/hoadonchitiet";
     }
 }

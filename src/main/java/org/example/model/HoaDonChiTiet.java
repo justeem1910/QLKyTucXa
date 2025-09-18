@@ -1,42 +1,37 @@
 package org.example.model;
 
 
+import java.math.BigDecimal;
+import java.util.List;
+
 public class HoaDonChiTiet {
-    private Integer maHdct;
-    private Integer idHd;
-    private Integer idDv;
-    private Integer soLuong;
+    private SinhVien sinhVien;
+    private String giaPhong;
 
-    public Integer getMaHdct() {
-        return maHdct;
+    private List<DichVuChiTiet> dichVuChiTiets;
+
+    public SinhVien getSinhVien() {
+        return sinhVien;
     }
 
-    public void setMaHdct(Integer maHdct) {
-        this.maHdct = maHdct;
+    public void setSinhVien(SinhVien sinhVien) {
+        this.sinhVien = sinhVien;
     }
 
-    public Integer getIdHd() {
-        return idHd;
+    public String getGiaPhong() {
+        return giaPhong;
     }
 
-    public void setIdHd(Integer idHd) {
-        this.idHd = idHd;
+    public void setGiaPhong(String giaPhong) {
+        this.giaPhong = giaPhong;
     }
 
-    public Integer getIdDv() {
-        return idDv;
+    public List<DichVuChiTiet> getDichVuChiTiets() {
+        return dichVuChiTiets;
     }
 
-    public void setIdDv(Integer idDv) {
-        this.idDv = idDv;
+    public void setDichVuChiTiets(List<DichVuChiTiet> dichVuChiTiets) {
+        this.dichVuChiTiets = dichVuChiTiets;
     }
-
-    public Integer getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(Integer soLuong) {
-        this.soLuong = soLuong;
-    }
-    // getters & setters
 }
+
