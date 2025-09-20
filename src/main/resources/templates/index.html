@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quản lý Ký túc xá</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        h1 {
+            color: #333;
+        }
+        .menu {
+            margin-top: 30px;
+        }
+        .menu a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .menu a:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
+<h1>🏫 Hệ thống Quản lý Ký túc xá</h1>
 
+<div class="menu">
+    <a th:href="@{/sinhvien}">👨‍🎓 Quản lý Sinh viên</a>
+    <a th:href="@{/toanha}">🏢 Quản lý Toà nhà</a>
+    <a th:href="@{/giaphong}">🏠 Quản lý Giá phòng</a>
+    <a th:href="@{/loaiphong}">🏠 Quản lý Loại Phòng</a>
+    <a th:href="@{/phong}">🏠 Quản lý Phòng</a>
+    <a th:href="@{/dichvu}">🛠 Quản lý Dịch vụ</a>
+    <a th:href="@{/hopdongthue}">📑 Quản lý Sinh viên thuê phòng</a>
+    <a th:href="@{/sudungdichvu}">📑 Quản lý Lịch sử sử dụng dịch vụ</a>
+    <a th:href="@{/hoadondichvu}">📑 Quản lý hoá đơn dịch vụ</a>
+    <a th:href="@{/hoadonthuephong}">📑 Quản lý hoá đơn thuê phòng</a>
+    <a th:href="@{/hoadon}">📑 Quản lý Hoá đơn</a>
+    <a th:href="@{/doanhthu}">📑 Quản lý Doanh thu</a>
+</div>
 </body>
 </html>

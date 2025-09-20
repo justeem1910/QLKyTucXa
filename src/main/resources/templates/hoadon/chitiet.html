@@ -7,7 +7,7 @@
 <body>
 <h2>Hóa Đơn Chi Tiết</h2>
 
-<p>Mã HD: <span th:text="${hoaDonChiTiet.hoaDonThuePhong.hoaDon.maHd}"></span></p>
+<p>Mã HD: <span th:text="${hoaDonChiTiet.hoaDonThuePhong.hoaDon.maHoaDon}"></span></p>
 <p>Ngày tạo: <span th:text="${hoaDonChiTiet.hoaDonThuePhong.hoaDon.ngayTao}"></span></p>
 <p>Mã sinh viên: <span th:text="${hoaDonChiTiet.sinhVien.maSv}"></span></p>
 <p>Tên SV: <span th:text="${hoaDonChiTiet.sinhVien.ten}"></span></p>
@@ -32,8 +32,8 @@
 
     <!-- Dịch vụ -->
     <tr th:each="ct : ${hoaDonChiTiet.dichVuChiTiets}">
-        <td th:text="${ct.dichVu.dichVu.ten}"></td>
-        <td th:text="${ct.dichVu.dichVu.gia}"></td>
+        <td th:text="${ct.dichVu.dichVu.tenDichVu}"></td>
+        <td th:text="${ct.dichVu.dichVu.giaCoDinh}"></td>
         <td th:text="${ct.dichVu.soLuong}"></td>
         <td th:text="${ct.dichVu.phiPhatSinh}"></td>
         <td th:text="${ct.tongTien}"></td>

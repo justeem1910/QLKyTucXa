@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Danh sách sinh viên thuê phòng</title>
+    <title>Quản lý sinh viên thuê phòng</title>
 </head>
 <body>
-<h2>Danh sách sinh viên thuê phòng</h2>
+<h2>Quản lý sinh viên thuê phòng</h2>
 
 <a th:href="@{/sinhvienthuephong/add}">+ Thêm sinh viên thuê phòng</a>
 <br/><br/>
@@ -22,6 +22,7 @@
         <th>Loại phòng</th>
         <th>Ngày bắt đầu</th>
         <th>Ngày kết thúc</th>
+        <th>Ngày kết thanh lý</th>
         <th>Thao tác</th>
     </tr>
     </thead>
@@ -37,7 +38,9 @@
         <td th:text="${svtp.hopDongThue.phong.loaiPhong.tenLoai}"></td>
         <td th:text="${#dates.format(svtp.hopDongThue.ngayBatDau, 'dd/MM/yyyy')}"></td>
         <td th:text="${#dates.format(svtp.hopDongThue.ngayKetThuc, 'dd/MM/yyyy')}"></td>
+        <td th:text="${#dates.format(svtp.hopDongThue.ngayThanhLy, 'dd/MM/yyyy')}"></td>
         <td>
+            <a th:href="@{|/sinhvienthuephong/delete/${svtp.sinhVien.maSv}/${svtp.hopDongThue.maHopDong}|}">Thanh lý hợp đồng</a>
             <a th:href="@{|/sinhvienthuephong/delete/${svtp.sinhVien.maSv}/${svtp.hopDongThue.maHopDong}|}">Xóa</a>
         </td>
     </tr>

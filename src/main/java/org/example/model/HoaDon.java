@@ -5,17 +5,18 @@ import java.sql.Date;
 
 public class HoaDon {
     private String maHoaDon;
-//    private String idSv;
+    private SinhVien sinhVien;
     private Date ngayTao;
     private BigDecimal tongTien;
 
-//    public String getIdSv() {
-//        return idSv;
-//    }
-//
-//    public void setIdSv(String idSv) {
-//        this.idSv = idSv;
-//    }
+
+    public SinhVien getSinhVien() {
+        return sinhVien;
+    }
+
+    public void setSinhVien(SinhVien sinhVien) {
+        this.sinhVien = sinhVien;
+    }
 
     public String getMaHoaDon() {
         return maHoaDon;

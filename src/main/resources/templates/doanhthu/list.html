@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doanh thu theo tháng</title>
+</head>
+<body>
+<h2>Doanh thu theo tháng</h2>
+
+<!-- Form chọn tháng -->
+<form th:action="@{/doanhthu}" method="get">
+    <label for="thang">Chọn tháng:</label>
+    <select name="thang" id="thang">
+        <option th:each="i : ${#numbers.sequence(1,12)}"
+                th:value="${i}"
+                th:text="${'Tháng ' + i}"
+                th:selected="${thang != null and i == thang}">
+        </option>
+    </select>
+    <button type="submit">Xem</button>
+</form>
+
+<!-- Chỉ hiển thị bảng nếu có dữ liệu -->
+<div th:if="${doanhThuList != null}">
+    <h3 th:text="'Doanh thu của tháng: ' + ${thang}"></h3>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Tên dịch vụ</th>
+            <th>Giá dịch vụ</th>
+            <th>Tổng tiền</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dt : ${doanhThuList}">
+            <td th:text="${dt.tenDichVu}"></td>
+            <!-- giả sử bạn muốn hiển thị đơn giá, lấy từ database thì cần thêm vào model DoanhThuDTO -->
+            <td th:text="${dt.giaDichVu != null ? dt.giaDichVu : ''}"></td>
+            <td th:text="${#numbers.formatDecimal(dt.tongDoanhThu, 0, 'COMMA', 0, 'POINT')}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <b>Tổng doanh thu: </b>
+        <span th:text="${#numbers.formatDecimal(tongDoanhThu, 0, 'COMMA', 0, 'POINT')}"></span> đồng
+    </p>
+</div>
+
+</body>
+</html>
