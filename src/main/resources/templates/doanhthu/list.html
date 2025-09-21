@@ -27,16 +27,17 @@
     <table border="1" cellpadding="5" cellspacing="0">
         <thead>
         <tr>
+            <th>Mã dịch vụ</th>
             <th>Tên dịch vụ</th>
-            <th>Giá dịch vụ</th>
             <th>Tổng tiền</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="dt : ${doanhThuList}">
+            <td th:text="${dt.maDichVu}"></td>
             <td th:text="${dt.tenDichVu}"></td>
             <!-- giả sử bạn muốn hiển thị đơn giá, lấy từ database thì cần thêm vào model DoanhThuDTO -->
-            <td th:text="${dt.giaDichVu != null ? dt.giaDichVu : ''}"></td>
+<!--            <td th:text="${dt.giaDichVu != null ? dt.giaDichVu : ''}"></td>-->
             <td th:text="${#numbers.formatDecimal(dt.tongDoanhThu, 0, 'COMMA', 0, 'POINT')}"></td>
         </tr>
         </tbody>

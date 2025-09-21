@@ -7,6 +7,15 @@ public class DoanhThuDTO {
     private String tenDichVu;
     private BigDecimal tongDoanhThu;
 
+    public DoanhThuDTO() {
+    }
+
+    public DoanhThuDTO(String maDichVu, String tenDichVu, BigDecimal tongDoanhThu) {
+        this.maDichVu = maDichVu;
+        this.tenDichVu = tenDichVu;
+        this.tongDoanhThu = tongDoanhThu;
+    }
+
     public String getMaDichVu() { return maDichVu; }
     public void setMaDichVu(String maDichVu) { this.maDichVu = maDichVu; }
 

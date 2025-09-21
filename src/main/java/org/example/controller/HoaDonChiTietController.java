@@ -14,52 +14,86 @@ public class HoaDonChiTietController {
 
     @GetMapping("/hoadon/chitiet")
     public String viewHoaDonChiTiet(Model model) {
-        // Fake data (bạn thay bằng service lấy từ DB)
         SinhVien sv = new SinhVien();
-        sv.setMaSv("SV01");
+        sv.setMaSv("SV1");
         sv.setTen("Nguyễn Văn A");
 
         HoaDon hoaDon = new HoaDon();
-        hoaDon.setMaHoaDon("HD01");
+        hoaDon.setMaHoaDon("HDON1");
         hoaDon.setNgayTao(java.sql.Date.valueOf("2025-09-30"));
 
         HoaDonThuePhong thuePhong = new HoaDonThuePhong();
         thuePhong.setSinhVien(sv);
         thuePhong.setHoaDon(hoaDon);
-        thuePhong.setTienPhong(new BigDecimal("1500000"));
+        thuePhong.setTienPhong(new BigDecimal("1800000"));
 
-        // Dịch vụ chi tiết
         List<DichVuChiTiet> dichVuChiTiets = new ArrayList<>();
 
-        // Vé xe tháng
-        HoaDonDichVu dv1 = new HoaDonDichVu();
-        dv1.setDichVu(new DichVu("DV01", "Vé xe tháng", "1 vé", new BigDecimal("100000")));
-        dv1.setSoLuong(2);
-        dv1.setPhiPhatSinh(new BigDecimal("5000"));
+        // Vé tháng (2 vé, 200k) + phí phát sinh 3000
+        HoaDonDichVu veThang = new HoaDonDichVu();
+        DichVu dvVeThang = new DichVu("DV2", "Vé xe tháng", "Tháng", new BigDecimal("100000"));
+        veThang.setDichVu(dvVeThang);
+        veThang.setSoLuong(2);
+        veThang.setPhiPhatSinh(new BigDecimal("3000")); // phí vượt
+        DichVuChiTiet ctVeThang = new DichVuChiTiet();
+        ctVeThang.setDichVu(veThang);
+        ctVeThang.setTongTien(new BigDecimal("203000"));
+        dichVuChiTiets.add(ctVeThang);
 
-        DichVuChiTiet ct1 = new DichVuChiTiet();
-        ct1.setDichVu(dv1);
-        ct1.setTongTien(new BigDecimal("205000"));
-        dichVuChiTiets.add(ct1);
+        // Xe không vé tháng: DV4
+        HoaDonDichVu dem30x1 = new HoaDonDichVu();
+        DichVu dvDem = new DichVu("DV4", "Vé xe lượt đêm", "Lượt", new BigDecimal("6000"));
+        dem30x1.setDichVu(dvDem);
+        dem30x1.setSoLuong(1);
+        dem30x1.setPhiPhatSinh(BigDecimal.ZERO);
+        DichVuChiTiet ctDem = new DichVuChiTiet();
+        ctDem.setDichVu(dem30x1);
+        ctDem.setTongTien(new BigDecimal("6000"));
+        dichVuChiTiets.add(ctDem);
 
-        // Vé xe lượt
-        HoaDonDichVu dv2 = new HoaDonDichVu();
-        dv2.setDichVu(new DichVu("DV02", "Vé xe lượt", "1 vé", new BigDecimal("3000")));
-        dv2.setSoLuong(10);
-        dv2.setPhiPhatSinh(BigDecimal.ZERO);
+        // Giặt là
+        HoaDonDichVu giatLa = new HoaDonDichVu();
+        DichVu dvGiatLa = new DichVu("DV1", "Giặt là", "Lần", new BigDecimal("15000"));
+        giatLa.setDichVu(dvGiatLa);
+        giatLa.setSoLuong(3);
+        giatLa.setPhiPhatSinh(BigDecimal.ZERO);
+        DichVuChiTiet ctGiatLa = new DichVuChiTiet();
+        ctGiatLa.setDichVu(giatLa);
+        ctGiatLa.setTongTien(new BigDecimal("45000"));
+        dichVuChiTiets.add(ctGiatLa);
 
-        DichVuChiTiet ct2 = new DichVuChiTiet();
-        ct2.setDichVu(dv2);
-        ct2.setTongTien(new BigDecimal("30000"));
-        dichVuChiTiets.add(ct2);
+        // Thuê xe đạp
+        HoaDonDichVu xeDap = new HoaDonDichVu();
+        DichVu dvXeDap = new DichVu("DV5", "Thuê xe đạp", "Giờ", new BigDecimal("5000"));
+        xeDap.setDichVu(dvXeDap);
+        xeDap.setSoLuong(1);
+        xeDap.setPhiPhatSinh(BigDecimal.ZERO);
+        DichVuChiTiet ctXeDap = new DichVuChiTiet();
+        ctXeDap.setDichVu(xeDap);
+        ctXeDap.setTongTien(new BigDecimal("5000"));
+        dichVuChiTiets.add(ctXeDap);
 
-        // Gom thành hóa đơn chi tiết
+        // Thuê xe máy
+        HoaDonDichVu xeMay = new HoaDonDichVu();
+        DichVu dvXeMay = new DichVu("DV6", "Thuê xe máy", "Giờ", new BigDecimal("20000"));
+        xeMay.setDichVu(dvXeMay);
+        xeMay.setSoLuong(1);
+        xeMay.setPhiPhatSinh(BigDecimal.ZERO);
+        DichVuChiTiet ctXeMay = new DichVuChiTiet();
+        ctXeMay.setDichVu(xeMay);
+        ctXeMay.setTongTien(new BigDecimal("20000"));
+        dichVuChiTiets.add(ctXeMay);
+
         HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
         hoaDonChiTiet.setSinhVien(sv);
         hoaDonChiTiet.setHoaDonThuePhong(thuePhong);
         hoaDonChiTiet.setDichVuChiTiets(dichVuChiTiets);
 
+        BigDecimal tong = new BigDecimal("2079000");
+        hoaDon.setTongTien(tong);
+
         model.addAttribute("hoaDonChiTiet", hoaDonChiTiet);
+        model.addAttribute("hoaDon", hoaDon);
         return "hoadon/chitiet";
     }
 }

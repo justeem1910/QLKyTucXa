@@ -10,6 +10,7 @@ import java.util.List;
 public class HoaDonService {
     private final HoaDonRepository repo;
     public HoaDonService(HoaDonRepository repo){ this.repo = repo; }
+
     public List<HoaDon> getAll(){ return repo.findAll(); }
     public HoaDon getById(String id){ return repo.findById(id); }
     public int create(HoaDon hd){ return repo.save(hd); }

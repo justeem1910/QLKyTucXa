@@ -16,7 +16,6 @@ public class HoaDonController {
         this.service = service;
     }
 
-    // Hiển thị danh sách sinh viên
     @GetMapping
     public String list(Model model, @RequestParam(value="error", required=false) String error) {
         model.addAttribute("listHoaDon", service.getAll());
@@ -24,14 +23,12 @@ public class HoaDonController {
         return "hoadon/list";
     }
 
-    // Form thêm mới
     @GetMapping("/add")
     public String addForm(Model model) {
         model.addAttribute("hoaDon", new HoaDon());
         return "hoadon/form";
     }
 
-    // Form sửa
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable String id, Model model) {
         HoaDon hd = service.getById(id);
@@ -39,26 +36,22 @@ public class HoaDonController {
         return "hoadon/form";
     }
 
-    // Xử lý lưu (thêm/sửa)
     @PostMapping("/save")
     public String save(@ModelAttribute HoaDon hd, Model model) {
         try {
-            if (hd.getMaHoaDon() == null) {
-                service.create(hd); // thêm mới
+            if (hd.getMaHoaDon() == null || hd.getMaHoaDon().isEmpty()) {
+                service.create(hd);
             } else {
-                service.update(hd); // cập nhật
+                service.update(hd);
             }
         } catch (DataAccessException ex) {
-            // Nếu lỗi duplicate key
-            String errorMsg = "Hoá đơn đã tồn tại";
-            model.addAttribute("error", errorMsg);
+            model.addAttribute("error", "Hoá đơn đã tồn tại");
             model.addAttribute("hoaDon", hd);
             return "hoadon/form";
         }
         return "redirect:/hoadon";
     }
 
-    // Xóa
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable String id) {
         service.delete(id);
