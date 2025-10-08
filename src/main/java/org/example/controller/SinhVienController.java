@@ -44,7 +44,7 @@ public class SinhVienController {
     @PostMapping("/save")
     public String save(@ModelAttribute SinhVien sv, Model model) {
         try {
-            if (sv.getMaSv() == null) {
+            if (sv.getMaSv().isEmpty()) {
                 service.create(sv); // thêm mới
             } else {
                 service.update(sv); // cập nhật

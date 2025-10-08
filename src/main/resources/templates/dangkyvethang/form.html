@@ -4,7 +4,7 @@
     <title>Thêm/Sửa vé tháng</title>
 </head>
 <body>
-<h2 th:text="${dangKyVeThang.sinhVien.maSv == null ? 'Thêm vé tháng' : 'Sửa vé tháng'}"></h2>
+<h2 th:text="${dangKyVeThang.sinhVien.maSv} == null ? 'Thêm vé tháng' : 'Sửa vé tháng'"></h2>
 
 <div th:if="${error}" style="color:red;" th:text="${error}"></div>
 

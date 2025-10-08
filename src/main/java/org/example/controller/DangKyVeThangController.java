@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.model.DangKyVeThang;
+import org.example.model.SinhVien;
 import org.example.service.DangKyVeThangService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +34,9 @@ public class DangKyVeThangController {
     // Form thêm mới
     @GetMapping("/add")
     public String addForm(Model model) {
-        model.addAttribute("dangKyVeThang", new DangKyVeThang());
+        DangKyVeThang veThang = new DangKyVeThang();
+        veThang.setSinhVien(new SinhVien());
+        model.addAttribute("dangKyVeThang", veThang);
         return "dangkyvethang/form";
     }
 

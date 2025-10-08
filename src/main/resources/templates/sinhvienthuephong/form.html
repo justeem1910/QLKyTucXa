@@ -6,14 +6,22 @@
 <body>
 <h2>Thêm sinh viên thuê phòng</h2>
 
-<form th:action="@{/sinhvienthuephong/save}" th:object="${svtp}" method="post">
-    <label>Mã sinh viên:</label>
-    <input type="text" th:field="*{sinhVien.maSv}" required/>
-    <br/>
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
 
-    <label>Mã hợp đồng:</label>
-    <input type="text" th:field="*{hopDongThue.maHopDong}" required/>
-    <br/>
+<form th:action="@{/sinhvienthuephong/save}" method="post">
+    <label>Mã sinh viên:</label>
+    <input type="text" name="maSv" required/><br/>
+
+    <label>Mã phòng:</label>
+    <input type="text" name="maPhong" required/><br/>
+
+    <label>Ngày bắt đầu:</label>
+    <input type="date" name="ngayBatDau" required/><br/>
+
+    <label>Ngày kết thúc:</label>
+    <input type="date" name="ngayKetThuc" required/><br/>
 
     <button type="submit">Lưu</button>
 </form>

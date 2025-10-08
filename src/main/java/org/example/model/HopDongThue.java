@@ -11,15 +11,6 @@ public class HopDongThue {
     private Date ngayThanhLy;
     // getters & setters
 
-//    public String getIdSv() {
-//        return idSv;
-//    }
-//
-//    public void setIdSv(String idSv) {
-//        this.idSv = idSv;
-//    }
-
-
     public String getMaHopDong() {
         return maHopDong;
     }

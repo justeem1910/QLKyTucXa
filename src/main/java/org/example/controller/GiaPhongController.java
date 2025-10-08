@@ -37,11 +37,18 @@ public class GiaPhongController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute GiaPhong gp) {
-        if (!service.getById(gp.getLoaiPhong().getMaLp(), gp.getBlockGia()).getLoaiPhong().getMaLp().isEmpty()) {
-            service.update(gp);
-        } else {
-            service.create(gp);
+    public String save(@ModelAttribute GiaPhong gp, Model model) {
+        try {
+            if (!service.getById(gp.getLoaiPhong().getMaLp(), gp.getBlockGia()).getLoaiPhong().getMaLp().isEmpty()) {
+                service.update(gp);
+            } else {
+                service.create(gp);
+            }
+        } catch (DataAccessException ex) {
+            String errorMsg = "Invalid data!";
+            model.addAttribute("error", errorMsg);
+            model.addAttribute("giaPhong", gp);
+            return "giaphong/form";
         }
         return "redirect:/giaphong";
     }

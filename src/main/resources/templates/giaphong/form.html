@@ -7,6 +7,10 @@
 <h2 th:text="${giaPhong.loaiPhong == null or giaPhong.loaiPhong.maLp == null ?
               'Thêm giá phòng' : 'Sửa giá phòng'}"></h2>
 
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
+
 <form th:action="@{/giaphong/save}" th:object="${giaPhong}" method="post">
     <!-- Loại phòng -->
     <label>Loại phòng:</label>

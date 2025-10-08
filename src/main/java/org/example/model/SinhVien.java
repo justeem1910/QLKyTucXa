@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
 
 public class SinhVien {

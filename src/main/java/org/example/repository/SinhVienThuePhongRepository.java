@@ -4,6 +4,7 @@ import org.example.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -137,6 +138,28 @@ public class SinhVienThuePhongRepository {
                 svtp.getSinhVien().getMaSv(),
                 svtp.getHopDongThue().getMaHopDong()
         );
+    }
+
+    public void createWithAutoContract(String maSv, String maPhong, Date ngayBatDau, Date ngayKetThuc) {
+        // 1️⃣ Insert hợp đồng và lấy mã hợp đồng mới
+        String insertHopDong = """
+            INSERT INTO hop_dong_thue(ma_phong, ngay_bat_dau, ngay_ket_thuc)
+            VALUES (?, ?, ?)
+            RETURNING ma_hop_dong;
+        """;
+
+        String maHopDong = jdbcTemplate.queryForObject(
+                insertHopDong,
+                new Object[]{maPhong, ngayBatDau, ngayKetThuc},
+                String.class
+        );
+
+        // 2️⃣ Liên kết sinh viên - hợp đồng
+        String insertSVTP = """
+            INSERT INTO sinh_vien_thue_phong(ma_sinh_vien, ma_hop_dong)
+            VALUES (?, ?);
+        """;
+        jdbcTemplate.update(insertSVTP, maSv, maHopDong);
     }
 
     public int delete(String maSinhVien, String maHopDong) {
