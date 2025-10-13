@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +26,13 @@ public class LuotGuiXeRepository {
                 (rs, rowNum) -> {
                     LuotGuiXe lgx = new LuotGuiXe();
                     lgx.setBienSoXe(rs.getString("bien_so_xe"));
-                    lgx.setThoiGianVao(rs.getTimestamp("thoi_gian_vao"));
-                    lgx.setThoiGianRa(rs.getTimestamp("thoi_gian_ra"));
+                    lgx.setThoiGianVao(rs.getTimestamp("thoi_gian_vao").toLocalDateTime());
+                    Timestamp tsRa = rs.getTimestamp("thoi_gian_ra");
+                    if (tsRa != null) {
+                        lgx.setThoiGianRa(tsRa.toLocalDateTime());
+                    } else {
+                        lgx.setThoiGianRa(null);
+                    }
 
                     SinhVien sv = new SinhVien();
                     sv.setMaSv(rs.getString("ma_sinh_vien"));
@@ -41,21 +47,28 @@ public class LuotGuiXeRepository {
                 });
     }
 
-    public LuotGuiXe findById(String maSv, String bienSoXe, Timestamp thoiGianVao) {
-        String sql = """
-            SELECT lgx.ma_sinh_vien, lgx.bien_so_xe, lgx.thoi_gian_vao, lgx.thoi_gian_ra,
-                   sv.ma_sinh_vien, sv.ten, sv.gioi_tinh, sv.ngay_sinh, sv.so_dien_thoai, sv.email
-            FROM luot_gui_xe lgx
-            JOIN sinh_vien sv ON lgx.ma_sinh_vien = sv.ma_sinh_vien
-            WHERE lgx.ma_sinh_vien=? AND lgx.bien_so_xe=? AND lgx.thoi_gian_vao=?
-            """;
-        return jdbcTemplate.queryForObject("SELECT * FROM luot_gui_xe WHERE ma_sinh_vien=? AND bien_so_xe=? AND thoi_gian_vao=?",
-                new Object[]{maSv, bienSoXe, thoiGianVao},
+    public LuotGuiXe findById(String maSv, String bienSoXe) {
+        String  sql = """
+        SELECT lgx.ma_sinh_vien, lgx.bien_so_xe, lgx.thoi_gian_vao, lgx.thoi_gian_ra,
+               sv.ma_sinh_vien, sv.ten, sv.gioi_tinh, sv.ngay_sinh, sv.so_dien_thoai, sv.email
+        FROM luot_gui_xe lgx
+        JOIN sinh_vien sv ON lgx.ma_sinh_vien = sv.ma_sinh_vien
+        WHERE lgx.ma_sinh_vien=? AND lgx.bien_so_xe=? AND lgx.thoi_gian_ra IS NULL
+        ORDER BY lgx.thoi_gian_vao DESC
+        LIMIT 1
+        """;
+        return jdbcTemplate.queryForObject(sql,
+                new Object[]{maSv, bienSoXe},
                 (rs, rowNum) -> {
                     LuotGuiXe lgx = new LuotGuiXe();
                     lgx.setBienSoXe(rs.getString("bien_so_xe"));
-                    lgx.setThoiGianVao(rs.getTimestamp("thoi_gian_vao"));
-                    lgx.setThoiGianRa(rs.getTimestamp("thoi_gian_ra"));
+                    lgx.setThoiGianVao(rs.getTimestamp("thoi_gian_vao").toLocalDateTime());
+                    Timestamp tsRa = rs.getTimestamp("thoi_gian_ra");
+                    if (tsRa != null) {
+                        lgx.setThoiGianRa(tsRa.toLocalDateTime());
+                    } else {
+                        lgx.setThoiGianRa(null);
+                    }
 
                     SinhVien sv = new SinhVien();
                     sv.setMaSv(rs.getString("ma_sinh_vien"));
@@ -72,19 +85,19 @@ public class LuotGuiXeRepository {
 
     public int save(LuotGuiXe lgx) {
         return jdbcTemplate.update(
-                "INSERT INTO luot_gui_xe(ma_sinh_vien,bien_so_xe,thoi_gian_vao,thoi_gian_ra) VALUES(?,?,?,?)",
-                lgx.getSinhVien().getMaSv(), lgx.getBienSoXe(), lgx.getThoiGianVao(), lgx.getThoiGianRa()
+                "INSERT INTO luot_gui_xe(ma_sinh_vien,bien_so_xe,thoi_gian_vao) VALUES(?,?,?)",
+                lgx.getSinhVien().getMaSv(), lgx.getBienSoXe(), Timestamp.valueOf(lgx.getThoiGianVao())
         );
     }
 
     public int update(LuotGuiXe lgx) {
         return jdbcTemplate.update(
                 "UPDATE luot_gui_xe SET thoi_gian_ra=? WHERE ma_sinh_vien=? AND bien_so_xe=? AND thoi_gian_vao=?",
-                 lgx.getThoiGianRa(), lgx.getSinhVien().getMaSv(), lgx.getBienSoXe(), lgx.getThoiGianVao()
+                Timestamp.valueOf(lgx.getThoiGianRa()), lgx.getSinhVien().getMaSv(), lgx.getBienSoXe(), Timestamp.valueOf(lgx.getThoiGianVao())
         );
     }
 
-    public int delete(String maSv, String bienSoXe, Timestamp thoiGianVao) {
+    public int delete(String maSv, String bienSoXe, LocalDateTime thoiGianVao) {
         return jdbcTemplate.update("DELETE FROM luot_gui_xe WHERE ma_sinh_vien=? AND bien_so_xe=? AND thoi_gian_vao=?", maSv, bienSoXe, thoiGianVao);
     }
 }

@@ -55,7 +55,8 @@ public class DangKyVeThangController {
     @PostMapping("/save")
     public String save(@ModelAttribute DangKyVeThang vt, Model model) {
         try {
-            if (!service.getById(vt.getSinhVien().getMaSv(), vt.getBienSoXe(), vt.getNgayBatDau()).getSinhVien().getMaSv().isEmpty()) {
+            DangKyVeThang existing = service.getById(vt.getSinhVien().getMaSv(), vt.getBienSoXe(), vt.getNgayBatDau());
+            if (existing == null) {
                 service.create(vt); // thêm mới
             } else {
                 service.update(vt); // cập nhật

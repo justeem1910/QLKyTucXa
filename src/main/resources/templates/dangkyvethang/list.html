@@ -30,7 +30,7 @@
         <td th:text="${vt.ngayBatDau}"></td>
         <td th:text="${vt.ngayKetThuc}"></td>
         <td>
-            <a th:href="@{'/dangkyvethang/edit/' + ${vt.sinhVien.maSv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}">Sửa</a> |
+<!--            <a th:href="@{'/dangkyvethang/edit/' + ${vt.sinhVien.maSv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}">Sửa</a> |-->
             <a th:href="@{'/dangkyvethang/delete/' + ${vt.sinhVien.maSv} + '/' + ${vt.bienSoXe} + '/' + ${vt.ngayBatDau}}"
                onclick="return confirm('Bạn có chắc muốn xóa vé tháng này?')">Xóa</a>
         </td>

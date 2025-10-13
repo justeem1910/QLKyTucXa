@@ -2,6 +2,7 @@ package org.example.repository;
 
 import org.example.model.DangKyVeThang;
 import org.example.model.SinhVien;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -49,25 +50,29 @@ public class DangKyVeThangRepository {
             JOIN sinh_vien sv ON dkvt.ma_sinh_vien = sv.ma_sinh_vien
             WHERE dkvt.ma_sinh_vien=? AND dkvt.bien_so_xe=? AND dkvt.ngay_bat_dau=?
             """;
-        return jdbcTemplate.queryForObject(sql,
-                new Object[]{maSv, bienSoXe, ngayBatDau},
-                (rs, rowNum) -> {
-                    DangKyVeThang vt = new DangKyVeThang();
-                    vt.setBienSoXe(rs.getString("bien_so_xe"));
-                    vt.setNgayBatDau(rs.getDate("ngay_bat_dau"));
-                    vt.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
+        try {
+            return jdbcTemplate.queryForObject(sql,
+                    new Object[]{maSv, bienSoXe, ngayBatDau},
+                    (rs, rowNum) -> {
+                        DangKyVeThang vt = new DangKyVeThang();
+                        vt.setBienSoXe(rs.getString("bien_so_xe"));
+                        vt.setNgayBatDau(rs.getDate("ngay_bat_dau"));
+                        vt.setNgayKetThuc(rs.getDate("ngay_ket_thuc"));
 
-                    SinhVien sv = new SinhVien();
-                    sv.setMaSv(rs.getString("ma_sinh_vien"));
-                    sv.setTen(rs.getString("ten"));
-                    sv.setGioiTinh(rs.getString("gioi_tinh"));
-                    sv.setNgaySinh(rs.getDate("ngay_sinh"));
-                    sv.setSoDienThoai(rs.getString("so_dien_thoai"));
-                    sv.setEmail(rs.getString("email"));
+                        SinhVien sv = new SinhVien();
+                        sv.setMaSv(rs.getString("ma_sinh_vien"));
+                        sv.setTen(rs.getString("ten"));
+                        sv.setGioiTinh(rs.getString("gioi_tinh"));
+                        sv.setNgaySinh(rs.getDate("ngay_sinh"));
+                        sv.setSoDienThoai(rs.getString("so_dien_thoai"));
+                        sv.setEmail(rs.getString("email"));
 
-                    vt.setSinhVien(sv);
-                    return vt;
-                });
+                        vt.setSinhVien(sv);
+                        return vt;
+                    });
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     public int save(DangKyVeThang vt) {
