@@ -20,7 +20,7 @@ public class HoaDonChiTietController {
 
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMaHoaDon("HDON1");
-        hoaDon.setNgayTao(java.sql.Date.valueOf("2025-09-30"));
+//        hoaDon.setNgayTao(java.sql.Date.valueOf("2025-09-30"));
 
         HoaDonThuePhong thuePhong = new HoaDonThuePhong();
         thuePhong.setSinhVien(sv);

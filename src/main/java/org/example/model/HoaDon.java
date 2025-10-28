@@ -1,46 +1,31 @@
 package org.example.model;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class HoaDon {
     private String maHoaDon;
-    private SinhVien sinhVien;
-    private Date ngayTao;
+    private LocalDate ngayTao;
     private BigDecimal tongTien;
 
+    public HoaDon() {}
 
-    public SinhVien getSinhVien() {
-        return sinhVien;
-    }
-
-    public void setSinhVien(SinhVien sinhVien) {
-        this.sinhVien = sinhVien;
-    }
-
-    public String getMaHoaDon() {
-        return maHoaDon;
-    }
-
-    public void setMaHoaDon(String maHoaDon) {
+    public HoaDon(String maHoaDon, LocalDate ngayTao, BigDecimal tongTien) {
         this.maHoaDon = maHoaDon;
-    }
-
-    public BigDecimal getTongTien() {
-        return tongTien;
-    }
-
-    public void setTongTien(BigDecimal tongTien) {
+        this.ngayTao = ngayTao;
         this.tongTien = tongTien;
     }
 
-    public Date getNgayTao() {
-        return ngayTao;
-    }
+    public String getMaHoaDon() { return maHoaDon; }
+    public void setMaHoaDon(String maHoaDon) { this.maHoaDon = maHoaDon; }
 
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
+    public LocalDate getNgayTao() { return ngayTao; }
+    public void setNgayTao(LocalDate ngayTao) { this.ngayTao = ngayTao; }
+
+    public BigDecimal getTongTien() { return tongTien; }
+    public void setTongTien(BigDecimal tongTien) { this.tongTien = tongTien; }
+
+    public void setNgayTao(LocalDateTime ngayTao) {
     }
-    // getters & setters
 }
-

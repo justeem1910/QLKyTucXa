@@ -2,59 +2,47 @@ package org.example.controller;
 
 import org.example.model.HoaDon;
 import org.example.service.HoaDonService;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.List;
+
 @Controller
 @RequestMapping("/hoadon")
 public class HoaDonController {
-    private final HoaDonService service;
 
-    public HoaDonController(HoaDonService service) {
-        this.service = service;
+    private final HoaDonService hoaDonService;
+
+    public HoaDonController(HoaDonService hoaDonService) {
+        this.hoaDonService = hoaDonService;
     }
 
     @GetMapping
-    public String list(Model model, @RequestParam(value="error", required=false) String error) {
-        model.addAttribute("listHoaDon", service.getAll());
-        model.addAttribute("error", error);
+    public String showForm(Model model) {
+        model.addAttribute("hoaDons", List.of());
+        model.addAttribute("selectedMonth", "");
         return "hoadon/list";
     }
 
-    @GetMapping("/add")
-    public String addForm(Model model) {
-        model.addAttribute("hoaDon", new HoaDon());
-        return "hoadon/form";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable String id, Model model) {
-        HoaDon hd = service.getById(id);
-        model.addAttribute("hoaDon", hd);
-        return "hoadon/form";
-    }
-
-    @PostMapping("/save")
-    public String save(@ModelAttribute HoaDon hd, Model model) {
+    @PostMapping("/tao")
+    public String taoHoaDon(@RequestParam("thang") String thangStr, Model model) {
         try {
-            if (hd.getMaHoaDon() == null || hd.getMaHoaDon().isEmpty()) {
-                service.create(hd);
-            } else {
-                service.update(hd);
-            }
-        } catch (DataAccessException ex) {
-            model.addAttribute("error", "Hoá đơn đã tồn tại");
-            model.addAttribute("hoaDon", hd);
-            return "hoadon/form";
-        }
-        return "redirect:/hoadon";
-    }
+            YearMonth ym = YearMonth.parse(thangStr);
+            LocalDate firstDay = ym.atDay(1);
+            hoaDonService.taoHoaDonTheoThang(Date.valueOf(firstDay));
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable String id) {
-        service.delete(id);
-        return "redirect:/hoadon";
+            List<HoaDon> hoaDons = hoaDonService.getHoaDonTheoThang(Date.valueOf(firstDay));
+            model.addAttribute("hoaDons", hoaDons);
+            model.addAttribute("selectedMonth", thangStr);
+        } catch (Exception e) {
+            model.addAttribute("hoaDons", List.of());
+            model.addAttribute("selectedMonth", thangStr);
+            model.addAttribute("error", "Lỗi khi tạo hóa đơn: " + e.getMessage());
+        }
+        return "hoadon/list";
     }
 }

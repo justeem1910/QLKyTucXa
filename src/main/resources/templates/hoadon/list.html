@@ -1,43 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Quản lý hóa đơn</title>
-    <meta charset="UTF-8"/>
+    <title>Quản lý Hóa đơn</title>
 </head>
 <body>
-<h2>Quản lý hóa đơn</h2>
+<h2>Tạo hóa đơn tháng</h2>
 
-<!--<a th:href="@{/hoadon/add}">+ Thêm hóa đơn</a>-->
+<form th:action="@{/hoadon/tao}" method="post">
+    <label>Chọn tháng: </label>
+    <input type="month" name="thang"
+           th:value="${selectedMonth}"
+           required />
+    <button type="submit">Tạo hóa đơn</button>
+</form>
 
-<table border="1" cellspacing="0" cellpadding="5">
+<hr/>
+
+<h3 th:if="${hoaDons != null and hoaDons.size() > 0}">Danh sách hóa đơn tháng [[${selectedMonth}]]</h3>
+
+<table th:if="${hoaDons != null and hoaDons.size() > 0}" border="1" cellpadding="6">
     <thead>
     <tr>
-        <th>Mã hóa đơn</th>
-        <th>Mã sinh viên</th>
-        <th>Tên sinh viên</th>
-        <th>Ngày tạo</th>
-        <th>Tổng tiền</th>
-        <th>Hành động</th>
+        <th>Mã Hóa Đơn</th>
+        <th>Ngày Tạo</th>
+        <th>Tổng Tiền</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="hd : ${listHoaDon}">
+    <tr th:each="hd : ${hoaDons}">
         <td th:text="${hd.maHoaDon}"></td>
-        <td th:text="${hd.sinhVien != null ? hd.sinhVien.maSv : ''}"></td>
-        <td th:text="${hd.sinhVien != null ? hd.sinhVien.ten : ''}"></td>
-        <td th:text="${#dates.format(hd.ngayTao, 'yyyy-MM-dd')}"></td>
-        <td th:text="${hd.tongTien}"></td>
-        <td>
-            <a th:href="@{|/hoadon/chitiet|}">Xem chi tiết</a> |
-<!--            <a th:href="@{|/hoadon/edit/${hd.maHoaDon}|}">Sửa</a> |-->
-<!--            <a th:href="@{|/hoadon/delete/${hd.maHoaDon}|}"-->
-<!--               onclick="return confirm('Xóa hóa đơn này?')">Xóa</a>-->
-        </td>
+        <td th:text="${hd.ngayTao}"></td>
+        <td th:text="${#numbers.formatDecimal(hd.tongTien, 0, 'COMMA', 0, 'POINT')}"></td>
     </tr>
     </tbody>
 </table>
-
-<p th:if="${error}" th:text="${error}" style="color:red"></p>
-
 </body>
 </html>

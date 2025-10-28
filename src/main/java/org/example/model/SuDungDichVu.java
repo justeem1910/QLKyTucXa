@@ -1,11 +1,11 @@
 package org.example.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class SuDungDichVu {
     private DichVu dichVu;
     private SinhVien sinhVien;
-    private Timestamp ngaySuDung;
+    private LocalDateTime ngaySuDung;
 
     public DichVu getDichVu() {
         return dichVu;
@@ -23,11 +23,11 @@ public class SuDungDichVu {
         this.sinhVien = sinhVien;
     }
 
-    public Timestamp getNgaySuDung() {
+    public LocalDateTime getNgaySuDung() {
         return ngaySuDung;
     }
 
-    public void setNgaySuDung(Timestamp ngaySuDung) {
+    public void setNgaySuDung(LocalDateTime ngaySuDung) {
         this.ngaySuDung = ngaySuDung;
     }
 }

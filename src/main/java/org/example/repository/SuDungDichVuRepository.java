@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -43,13 +44,19 @@ public class SuDungDichVuRepository {
 
             sddv.setDichVu(dv);
             sddv.setSinhVien(sv);
-            sddv.setNgaySuDung(rs.getTimestamp("ngay_su_dung"));
+            Timestamp tsRa = rs.getTimestamp("ngay_su_dung");
+            if (tsRa != null) {
+                sddv.setNgaySuDung(tsRa.toLocalDateTime());
+            } else {
+                sddv.setNgaySuDung(null);
+            }
+//            sddv.setNgaySuDung(rs.getTimestamp("ngay_su_dung"));
 
             return sddv;
         });
     }
 
-    public SuDungDichVu findById(String maDv, String maSv, Timestamp ngaySuDung) {
+    public SuDungDichVu findById(String maDv, String maSv, LocalDateTime ngaySuDung) {
         String sql = """
             SELECT sddv.ma_dich_vu, sddv.ma_sinh_vien, sddv.ngay_su_dung,
                    dv.ma_dich_vu, dv.ten_dich_vu, dv.don_vi, dv.gia_co_dinh,
@@ -78,7 +85,13 @@ public class SuDungDichVuRepository {
 
             sddv.setDichVu(dv);
             sddv.setSinhVien(sv);
-            sddv.setNgaySuDung(rs.getTimestamp("ngay_su_dung"));
+            Timestamp tsRa = rs.getTimestamp("ngay_su_dung");
+            if (tsRa != null) {
+                sddv.setNgaySuDung(tsRa.toLocalDateTime());
+            } else {
+                sddv.setNgaySuDung(null);
+            }
+//            sddv.setNgaySuDung(rs.getTimestamp("ngay_su_dung"));
 
             return sddv;
         });
@@ -89,14 +102,14 @@ public class SuDungDichVuRepository {
                 "INSERT INTO su_dung_dich_vu(ma_dich_vu, ma_sinh_vien, ngay_su_dung) VALUES(?,?,?)",
                 sddv.getDichVu().getMaDichVu(),
                 sddv.getSinhVien().getMaSv(),
-                sddv.getNgaySuDung()
+                Timestamp.valueOf(sddv.getNgaySuDung())
         );
     }
 
-    public int delete(String maDv, String maSv, Timestamp ngaySuDung) {
+    public int delete(String maDv, String maSv, LocalDateTime ngaySuDung) {
         return jdbcTemplate.update(
                 "DELETE FROM su_dung_dich_vu WHERE ma_dich_vu=? AND ma_sinh_vien=? AND ngay_su_dung=?",
-                maDv, maSv, ngaySuDung
+                maDv, maSv, Timestamp.valueOf(ngaySuDung)
         );
     }
 }

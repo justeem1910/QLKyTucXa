@@ -98,6 +98,6 @@ public class LuotGuiXeRepository {
     }
 
     public int delete(String maSv, String bienSoXe, LocalDateTime thoiGianVao) {
-        return jdbcTemplate.update("DELETE FROM luot_gui_xe WHERE ma_sinh_vien=? AND bien_so_xe=? AND thoi_gian_vao=?", maSv, bienSoXe, thoiGianVao);
+        return jdbcTemplate.update("DELETE FROM luot_gui_xe WHERE ma_sinh_vien=? AND bien_so_xe=? AND thoi_gian_vao=?", maSv, bienSoXe, Timestamp.valueOf(thoiGianVao));
     }
 }

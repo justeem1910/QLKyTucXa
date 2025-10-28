@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/sudungdichvu")
@@ -37,10 +38,9 @@ public class SuDungDichVuController {
     @GetMapping("/edit")
     public String editForm(@RequestParam String maDichVu,
                            @RequestParam String maSinhVien,
-                           @RequestParam String ngaySuDung,
+                           @RequestParam LocalDateTime ngaySuDung,
                            Model model) {
-        Timestamp ts = Timestamp.valueOf(ngaySuDung.replace("T", " ") + ":00");
-        SuDungDichVu sddv = service.getById(maDichVu, maSinhVien, ts);
+        SuDungDichVu sddv = service.getById(maDichVu, maSinhVien, ngaySuDung);
         model.addAttribute("suDungDichVu", sddv);
         return "sudungdichvu/form";
     }
@@ -63,9 +63,8 @@ public class SuDungDichVuController {
     @GetMapping("/delete")
     public String delete(@RequestParam String maDichVu,
                          @RequestParam String maSinhVien,
-                         @RequestParam String ngaySuDung) {
-        Timestamp ts = Timestamp.valueOf(ngaySuDung.replace("T", " ") + ":00");
-        service.delete(maDichVu, maSinhVien, ts);
+                         @RequestParam LocalDateTime ngaySuDung) {
+        service.delete(maDichVu, maSinhVien, ngaySuDung);
         return "redirect:/sudungdichvu";
     }
 }

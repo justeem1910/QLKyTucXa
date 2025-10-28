@@ -48,7 +48,7 @@ public class HoaDonThuePhongRepository {
             // Hóa đơn
             HoaDon hd = new HoaDon();
             hd.setMaHoaDon(rs.getString("ma_hoa_don"));
-            hd.setNgayTao(rs.getDate("ngay_tao"));
+            hd.setNgayTao(rs.getTimestamp("ngay_tao").toLocalDateTime());
             hd.setTongTien(rs.getBigDecimal("tong_tien"));
 
             // Hợp đồng thuê
@@ -120,7 +120,7 @@ public class HoaDonThuePhongRepository {
 
             HoaDon hd = new HoaDon();
             hd.setMaHoaDon(rs.getString("ma_hoa_don"));
-            hd.setNgayTao(rs.getDate("ngay_tao"));
+            hd.setNgayTao(rs.getTimestamp("ngay_tao").toLocalDateTime());
             hd.setTongTien(rs.getBigDecimal("tong_tien"));
 
             HopDongThue hopDong = new HopDongThue();

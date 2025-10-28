@@ -42,7 +42,7 @@ public class HoaDonDichVuRepository {
             // Hóa đơn
             HoaDon hd = new HoaDon();
             hd.setMaHoaDon(rs.getString("ma_hoa_don"));
-            hd.setNgayTao(rs.getDate("ngay_tao"));
+            hd.setNgayTao(rs.getTimestamp("ngay_tao").toLocalDateTime());
             hd.setTongTien(rs.getBigDecimal("tong_tien"));
 
             // Dịch vụ
@@ -90,7 +90,7 @@ public class HoaDonDichVuRepository {
 
             HoaDon hd = new HoaDon();
             hd.setMaHoaDon(rs.getString("ma_hoa_don"));
-            hd.setNgayTao(rs.getDate("ngay_tao"));
+            hd.setNgayTao(rs.getTimestamp("ngay_tao").toLocalDateTime());
             hd.setTongTien(rs.getBigDecimal("tong_tien"));
 
             DichVu dv = new DichVu();
